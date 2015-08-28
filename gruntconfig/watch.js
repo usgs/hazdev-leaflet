@@ -3,64 +3,39 @@
 var config = require('./config');
 
 var watch = {
-  resources: {
-    files: [
-      config.src + '/**/*',
-      '!' + config.src + '/**/*.scss',
-      '!' + config.src + '/**/*.js'
-    ],
-    tasks: [
-      'copy:dev'
-    ]
-  },
-
-  compass: {
-    files: [
-      config.src + '/htdocs/**/*.scss'
-    ],
-    tasks: [
-      'compass:dev'
-    ]
-  },
-
-  test: {
-    files: [
-      config.test + '/**/*'
-    ],
-    tasks: [
-      'jshint:test',
-      'concurrent:test'
-    ]
-  },
-
   scripts: {
     files: [
-      config.src + '/htdocs/**/*.js'
+      config.example + '/**/*.js',
+      config.src + '/**/*.js',
+      config.test + '/**/*.js'
     ],
-    tasks: [
-      'jshint:dev',
-      'browserify:index',
-      'browserify:bundle'
-    ]
+    tasks: ['jshint:scripts', 'browserify', 'mocha_phantomjs']
   },
-
-  gruntfile: {
+  scss: {
     files: [
-      'Gruntfile.js',
-      'gruntconfig/**/*.js'
+      config.src + '/**/*.scss'
     ],
-    tasks: [
-      'jshint:gruntfile'
-    ]
+    tasks: ['compass']
   },
-
-  livereload: {
+  html: {
+    files: [
+      config.example + '/**/*.html',
+      config.test + '/**/*.html'
+    ],
+    tasks: ['copy:test']
+  },
+  reload: {
+    files: [
+      config.build + '/**/*',
+      config.example + '/**/*'
+    ],
     options: {
-      livereload: config.liveReloadPort
-    },
-    files: [
-      config.build + '/' + config.src + '/htdocs/**/*'
-    ]
+      livereload: true
+    }
+  },
+  gruntfile: {
+    files: ['Gruntfile.js', 'gruntconfig/**/*.js'],
+    tasks: ['jshint:gruntfile']
   }
 };
 

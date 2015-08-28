@@ -2,46 +2,38 @@
 
 var config = require('./config');
 
-var CWD = process.cwd();
 
-// List individual modules here. Each listed module will be aliased in the
-// "bundle", and will be set as an external in the "test".
 var EXPORTS = [
-  CWD + '/' + config.src + '/htdocs/js/ExampleModule.js:ExampleModule'
+  'leaflet/Leaflet'
 ];
-// Subsequent source files can then require "ExampleModule" with:
-// var ExampleModule = require('package/ExampleModule');
+
 
 var browerify = {
   options: {
     browserifyOptions: {
       debug: true,
       paths: [
-        process.cwd() + '/' + config.src + '/htdocs/js'
+        './' + config.src,
+        './node_modules/hazdev-webutils/src'
       ]
     }
   },
 
-
-  // the bundle used by the index page
-  index: {
-    src: [config.src + '/htdocs/js/index.js'],
-    dest: config.build + '/' + config.src + '/htdocs/js/index.js'
-  },
-
-  // the bundle used by tests
-  bundle: {
+  // source bundle
+  source : {
     src: [],
-    dest: config.build + '/' + config.src + '/htdocs/js/bundle.js',
+    dest: config.build + '/' + config.src + '/hazdev-leaflet.js',
     options: {
-      alias: EXPORTS
+      alias: EXPORTS.map(function (path) {
+        return './' + config.src + '/' + path + '.js:' + path;
+      })
     }
   },
 
-  // the bundle of test suites
+  // test bundle
   test: {
-    src: [config.test + '/js/test.js'],
-    dest: config.build + '/' + config.test + '/js/test.js',
+    src: config.test + '/test.js',
+    dest: config.build + '/' + config.test + '/test.js',
     options: {
       external: EXPORTS
     }

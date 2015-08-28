@@ -3,9 +3,9 @@
 var config = require('./config');
 
 var uglify = {
-  index: {
-    src: [config.build + '/' + config.src + '/htdocs/js/index.js'],
-    dest: config.dist + '/htdocs/js/index.js'
+  dist: {
+    src: config.build + '/' + config.src + '/hazdev-d3.js',
+    dest: config.dist + '/hazdev-d3.js'
   }
 };
 
