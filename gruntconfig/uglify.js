@@ -4,8 +4,8 @@ var config = require('./config');
 
 var uglify = {
   dist: {
-    src: config.build + '/' + config.src + '/hazdev-d3.js',
-    dest: config.dist + '/hazdev-d3.js'
+    src: config.build + '/' + config.src + '/hazdev-leaflet.js',
+    dest: config.dist + '/hazdev-leaflet.js'
   }
 };
 
