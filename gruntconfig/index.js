@@ -4,7 +4,6 @@ var gruntConfig = {
 
   browserify: require('./browserify'),
   clean: require('./clean'),
-  compass: require('./compass'),
   connect: require('./connect'),
   copy: require('./copy'),
   cssmin: require('./cssmin'),
@@ -16,7 +15,6 @@ var gruntConfig = {
   tasks: [
     'grunt-browserify',
     'grunt-contrib-clean',
-    'grunt-contrib-compass',
     'grunt-contrib-connect',
     'grunt-contrib-copy',
     'grunt-contrib-cssmin',

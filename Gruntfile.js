@@ -56,7 +56,6 @@ module.exports = function (grunt) {
   grunt.registerTask('dev', taskList([
     'clean',
     'browserify',
-    'compass',
     'copy'
   ]));
 

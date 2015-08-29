@@ -11,12 +11,6 @@ var watch = {
     ],
     tasks: ['jshint:scripts', 'browserify', 'mocha_phantomjs']
   },
-  scss: {
-    files: [
-      config.src + '/**/*.scss'
-    ],
-    tasks: ['compass']
-  },
   html: {
     files: [
       config.example + '/**/*.html',
