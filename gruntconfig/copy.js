@@ -5,7 +5,7 @@ var config = require('./config');
 var copy = {
   build: {
     expand: true,
-    cwd: config.src,
+    cwd: config.src + '/leaflet',
     dest: config.build + '/' + config.src,
     src: [
       'leaflet.css',
@@ -15,10 +15,19 @@ var copy = {
 
   dist: {
     expand: true,
-    cwd: config.src,
+    cwd: config.src + '/leaflet',
     dest: config.build + '/' + config.dist,
     src: [
       'leaflet.css',
+      'images/**'
+    ]
+  },
+
+  example: {
+    expand: true,
+    cwd: config.src + '/leaflet',
+    dest: config.example,
+    src: [
       'images/**'
     ]
   },
