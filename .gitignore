@@ -2,5 +2,7 @@
 .build
 .sass-cache
 dist
+example/hazdev-leaflet*
+example/images
 node_modules
 *.sublime-workspace
