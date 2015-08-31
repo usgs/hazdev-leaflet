@@ -4,7 +4,7 @@ var config = require('./config');
 
 
 var EXPORTS = [
-  'leaflet/Leaflet'
+  'leaflet/leaflet'
 ];
 
 

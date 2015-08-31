@@ -16,7 +16,7 @@ var copy = {
   dist: {
     expand: true,
     cwd: config.src + '/leaflet',
-    dest: config.build + '/' + config.dist,
+    dest: config.dist,
     src: [
       'leaflet.css',
       'images/**'
