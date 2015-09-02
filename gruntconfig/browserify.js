@@ -4,8 +4,14 @@ var config = require('./config');
 
 
 var EXPORTS = [
-  'leaflet/leaflet'
-];
+  './node_modules/leaflet/dist/leaflet-src.js:leaflet'
+].concat(
+  [
+    'leaflet/FullscreenControl'
+  ].map(function (path) {
+    return './' + config.src + '/' + path + '.js:' + path;
+  })
+);
 
 
 var browerify = {
@@ -24,9 +30,7 @@ var browerify = {
     src: [],
     dest: config.build + '/' + config.src + '/hazdev-leaflet.js',
     options: {
-      alias: EXPORTS.map(function (path) {
-        return './' + config.src + '/' + path + '.js:' + path;
-      })
+      alias: EXPORTS
     }
   },
 
