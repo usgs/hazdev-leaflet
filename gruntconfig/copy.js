@@ -8,7 +8,7 @@ var copy = {
     cwd: config.src + '/leaflet',
     dest: config.build + '/' + config.src,
     src: [
-      'leaflet.css',
+      'hazdev-leaflet.css',
       'images/**'
     ]
   },
@@ -18,16 +18,7 @@ var copy = {
     cwd: config.src + '/leaflet',
     dest: config.dist,
     src: [
-      'leaflet.css',
-      'images/**'
-    ]
-  },
-
-  example: {
-    expand: true,
-    cwd: config.src + '/leaflet',
-    dest: config.example,
-    src: [
+      'hazdev-leaflet.css',
       'images/**'
     ]
   },
@@ -35,8 +26,8 @@ var copy = {
   test: {
     expand: true,
     cwd: config.test,
-    src: ['**/*.html', 'jsonp.js'],
-    dest: config.build + '/' + config.test
+    dest: config.build + '/' + config.test,
+    src: ['**/*.html', 'jsonp.js']
   }
 };
 

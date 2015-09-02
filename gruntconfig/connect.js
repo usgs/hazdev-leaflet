@@ -17,6 +17,7 @@ var connect = {
       port: 8000
     }
   },
+
   test: {
     options: {
       base: [
@@ -28,6 +29,7 @@ var connect = {
       port: 8001
     }
   },
+
   dist: {
     options: {
       base: [

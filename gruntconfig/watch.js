@@ -9,7 +9,11 @@ var watch = {
       config.src + '/**/*.js',
       config.test + '/**/*.js'
     ],
-    tasks: ['jshint:scripts', 'browserify', 'mocha_phantomjs']
+    tasks: [
+      'jshint:scripts',
+      'browserify',
+      'mocha_phantomjs'
+    ]
   },
   html: {
     files: [
@@ -28,7 +32,10 @@ var watch = {
     }
   },
   gruntfile: {
-    files: ['Gruntfile.js', 'gruntconfig/**/*.js'],
+    files: [
+      'Gruntfile.js',
+      'gruntconfig/**/*.js'
+    ],
     tasks: ['jshint:gruntfile']
   }
 };

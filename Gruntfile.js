@@ -56,8 +56,7 @@ module.exports = function (grunt) {
   grunt.registerTask('dev', taskList([
     'clean',
     'browserify',
-    'copy',
-    'cssmin:example'
+    'copy'
   ]));
 
   // starts distribution server and preview
