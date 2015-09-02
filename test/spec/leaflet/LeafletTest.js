@@ -2,7 +2,7 @@
 'use strict';
 
 var expect = chai.expect,
-    Leaflet = require('leaflet/Leaflet');
+    L = require('leaflet');
 
 
 describe('Leaflet', function () {
@@ -10,7 +10,7 @@ describe('Leaflet', function () {
   describe('constructor', function () {
 
     it('is defined', function () {
-      expect(Leaflet).to.not.equal(null);
+      expect(L).to.not.equal(null);
     });
 
   });
