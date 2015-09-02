@@ -31,12 +31,24 @@ var watch = {
       livereload: true
     }
   },
+
   gruntfile: {
     files: [
       'Gruntfile.js',
       'gruntconfig/**/*.js'
     ],
-    tasks: ['jshint:gruntfile']
+    tasks: [
+      'jshint:gruntfile'
+    ]
+  },
+
+  scss: {
+    files: [
+      config.src + '/**/*.scss'
+    ],
+    tasks: [
+      'postcss:dev'
+    ]
   }
 };
 
