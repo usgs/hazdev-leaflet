@@ -9,8 +9,8 @@ var EXPORTS = [
   [
     'leaflet/ArcIdentify',
     'leaflet/ArcTileLayer',
-    'leaflet/FullscreenControl',
-    'leaflet/FaultMap'
+    'leaflet/FaultMap',
+    'leaflet/FullscreenControl'
   ].map(function (path) {
     return './' + config.src + '/' + path + '.js:' + path;
   })
