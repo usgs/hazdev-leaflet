@@ -1,7 +1,7 @@
 'use strict';
 
 
-var ArcTileLayer = require('leaflet/ArcTileLayer'),
+var HazardFaultLayer = require('leaflet/HazardFaultLayer'),
     L = require('leaflet');
 
 
@@ -25,12 +25,8 @@ initialize = function () {
     ]
   });
 
-  new ArcTileLayer({
-    clickable: true,
-    formatPopup: function (result) {
-      return result.value;
-    },
-    url: 'http://geohazards.usgs.gov/ArcGIS/rest/services/qfaults2013'
+  HazardFaultLayer.HazardFault2014({
+    clickable: true
   }).addTo(map);
 };
 

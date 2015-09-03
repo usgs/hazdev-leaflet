@@ -6,8 +6,7 @@ var ArcIdentify = require('leaflet/ArcIdentify'),
 
 
 var DEFAULTS = {
-  clickable: false,
-  formatPopup: JSON.stringify
+  clickable: false
 };
 
 
@@ -16,7 +15,7 @@ var ArcTileLayer = L.TileLayer.extend({
   initialize: function (options) {
     options = Util.extend({}, DEFAULTS, options);
     this._clickable = options.clickable;
-    this._formatPopup = options.formatPopup;
+    this._formatPopup = options.formatPopup || this._formatPopup;
     this._map = null;
     this._url = options.url;
 
@@ -45,6 +44,10 @@ var ArcTileLayer = L.TileLayer.extend({
     if (this._map !== null) {
       this._map.closePopup();
     }
+  },
+
+  _formatPopup: function (result) {
+    return JSON.stringify(result);
   },
 
   _onClick: function (evt) {
@@ -82,7 +85,7 @@ var ArcTileLayer = L.TileLayer.extend({
     if (results.length === 0) {
       this._closePopup();
     } else {
-      this._map.openPopup(this._formatPopup(results[0]), latlng);
+      this._map.openPopup(this._formatPopup(results), latlng);
     }
   }
 
