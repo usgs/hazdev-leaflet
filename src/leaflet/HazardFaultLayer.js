@@ -35,16 +35,13 @@ var HazardFaultLayer = ArcTileLayer.extend({
       url = attr.CFM_URL;
 
       if (url) {
-        name = '<a href="' + url + '">' + name + '</a>';
+        name = '<a target="_blank" href="' + url + '">' + name + '</a>';
       }
 
       markup.push(
         '<li>' +
-          '<dl>' +
-            '<dt class="fault-name">Name</dt>' +
-            '<dd class="fault-name">' +
-              name +
-            '</dd>' +
+          '<span class="fault-name">' + name + '</span>' +
+          '<dl class="horizontal">' +
             '<dt class="fault-dip">Dip</dt>' +
             '<dd class="fault-dip">' +
               dip + dipDirection +
@@ -53,7 +50,7 @@ var HazardFaultLayer = ArcTileLayer.extend({
             '<dd class="fault-slip-rate">' +
               slipRate +
             '</dd>' +
-            '<dt class="fault-slip-sense">Slipe Sense</dt>' +
+            '<dt class="fault-slip-sense">Slip Sense</dt>' +
             '<dd class="fault-slip-sense">' +
               slipSense +
             '</dd>' +
@@ -63,7 +60,9 @@ var HazardFaultLayer = ArcTileLayer.extend({
 
     });
 
-    return '<ul class="no-style">' + markup.join('') + '</ul>';
+    return '<ul class="no-style hazard-fault-layer-popup">' +
+        markup.join('') +
+        '</ul>';
   }
 
 });
