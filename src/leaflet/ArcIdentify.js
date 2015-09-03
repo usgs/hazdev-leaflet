@@ -3,6 +3,7 @@
 var Util = require('util/Util'),
     Xhr = require('util/Xhr');
 
+
 var DEFAULTS = {
   srid: 4326
 };
@@ -53,13 +54,10 @@ var ArcIdentify = function (options) {
     params.sr = _srid;
     params.tolerance = '3';
 
-    Xhr.jsonp({
+    Xhr.jsonp(Util.extend({}, options, {
       url: _url,
-      success: options.success,
-      error: options.error,
-      done: options.done,
       data: params
-    });
+    }));
   };
 
   _initialize(options);

@@ -26,13 +26,12 @@ initialize = function () {
   });
 
   new ArcTileLayer({
-    url: 'http://geohazards.usgs.gov/ArcGIS/rest/services/qfaults2013',
-    map: map,
-    enableIdentify: true,
+    clickable: true,
     formatPopup: function (result) {
       return result.value;
-    }
-  });
+    },
+    url: 'http://geohazards.usgs.gov/ArcGIS/rest/services/qfaults2013'
+  }).addTo(map);
 };
 
 

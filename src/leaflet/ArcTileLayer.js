@@ -1,57 +1,78 @@
 'use strict';
 
-var L = require('leaflet'),
-    ArcIdentify = require('leaflet/ArcIdentify'),
+var ArcIdentify = require('leaflet/ArcIdentify'),
+    L = require('leaflet'),
     Util = require('util/Util');
 
+
 var DEFAULTS = {
-  enableIdentify: false,
+  clickable: false,
   formatPopup: JSON.stringify
 };
 
 
-var ArcTileLayer = function (options) {
-  var _this,
-      _initialize,
+var ArcTileLayer = L.TileLayer.extend({
 
-      _enableIdentify,
-      _identify,
-      _map,
-      _tileLayer,
-      _url,
-
-      _formatPopup,
-      _hidePopup,
-      _showPopup,
-      _onClick;
-
-  _initialize = function (options) {
+  initialize: function (options) {
     options = Util.extend({}, DEFAULTS, options);
+    this._clickable = options.clickable;
+    this._formatPopup = options.formatPopup;
+    this._map = null;
+    this._url = options.url;
 
-    _enableIdentify = options.enableIdentify;
-    _formatPopup = options.formatPopup;
-    _map = options.map;
-    _url = options.url;
+    this._service = ArcIdentify({
+      url: this._url + '/MapServer/identify'
+    });
 
-    _tileLayer = L.tileLayer(
-        _url + '/MapServer/tile/{z}/{y}/{x}',
-        options.tileLayerOptions);
-    _tileLayer.addTo(_map);
+		L.TileLayer.prototype.initialize.call(this,
+        this._url + '/MapServer/tile/{z}/{y}/{x}', options);
+  },
 
-    if (_enableIdentify) {
-      _identify = ArcIdentify({
-        url: _url + '/MapServer/identify'
-      });
-      _map.on('click', _onClick);
+  onAdd: function (map) {
+    L.TileLayer.prototype.onAdd.call(this, map);
+    this._map = map;
+    if (this._clickable) {
+      this._map.on('click', this._onClick, this);
     }
-  };
+  },
 
-  _hidePopup = function () {
-    _map.closePopup();
-  };
+  onRemove: function (map) {
+    this._map.off('click', this._onClick, this);
+    L.TileLayer.prototype.onRemove.call(this, map);
+  },
 
-  _showPopup = function (latlng, result) {
+  _closePopup: function () {
+    if (this._map !== null) {
+      this._map.closePopup();
+    }
+  },
+
+  _onClick: function (evt) {
+    var latlng = evt.latlng,
+        _this = this;
+
+    this._service.identify({
+      latitude: latlng.lat,
+      longitude: latlng.lng,
+      success: function (result) {
+        if (result.results.length === 0) {
+          _this._closePopup();
+        } else {
+          _this._openPopup(latlng, result);
+        }
+      },
+      error: function () {
+        _this._closePopup();
+      }
+    });
+  },
+
+  _openPopup: function (latlng, result) {
     var results;
+
+    if (this._map === null) {
+      return;
+    }
 
     if (result && result.results) {
       results = result.results;
@@ -59,34 +80,19 @@ var ArcTileLayer = function (options) {
     results = results || [];
 
     if (results.length === 0) {
-      _hidePopup();
+      this._closePopup();
     } else {
-      _map.openPopup(_formatPopup(results[0]), latlng);
+      this._map.openPopup(this._formatPopup(results[0]), latlng);
     }
-  };
+  }
 
-  _onClick = function (evt) {
-    var latlng = evt.latlng;
-
-    _identify.identify({
-      latitude: latlng.lat,
-      longitude: latlng.lng,
-      success: function (result) {
-        console.log(result);
-        if (result.results.length === 0) {
-          _hidePopup();
-        } else {
-          _showPopup(latlng, result);
-        }
-      },
-      error: _hidePopup
-    });
-  };
+});
 
 
-  _initialize(options);
-  options = null;
-  return _this;
+L.ArcTileLayer = ArcTileLayer;
+L.arcTileLayer = function (options) {
+  return new ArcTileLayer(options);
 };
+
 
 module.exports = ArcTileLayer;
