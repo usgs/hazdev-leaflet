@@ -1,8 +1,8 @@
 'use strict';
 
 
-var L = require('leaflet'),
-    Fullscreen = require('leaflet/FullscreenControl');
+var Fullscreen = require('leaflet/FullscreenControl'),
+    L = require('leaflet');
 
 
 var initialize,
