@@ -1,0 +1,59 @@
+@import '_mixins.scss';
+
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  width: $button-size;
+  height: $button-size;
+  line-height: $button-size;
+}
+
+
+.leaflet-control {
+  @mixin basic-control;
+
+  > .leaflet-control-icon {
+    @mixin basic-control-button;
+  }
+
+  > .help {
+    @mixin basic-control-tooltip;
+  }
+
+  &:hover .help {
+    @mixin basic-control-tooltip-hover;
+  }
+}
+
+.leaflet-control-scale {
+  padding: 4px 6px;
+
+  > div {
+    background-color: transparent;
+    box-shadow: none !important;
+  }
+}
+
+.leaflet-left .leaflet-control-scale {
+  margin-left:10px;
+}
+.leaflet-bottom .leaflet-control-scale {
+  margin-bottom:10px;
+}
+.leaflet-right .leaflet-control-scale {
+  margin-right:10px;
+}
+
+.leaflet-touch {
+
+  .leaflet-control {
+    border:none;
+
+    &:hover .help {
+      display:none;
+    }
+  }
+
+  .leaflet-control-zoom {
+    display:none;
+  }
+}

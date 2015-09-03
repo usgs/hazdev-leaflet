@@ -1,0 +1,19 @@
+body {
+	padding: 1em;
+}
+.map {
+	display: block;
+	height: 500px;
+	margin-top: 1em;
+	width: 500px;
+}
+
+.no-style {
+	list-style: none;
+	margin: 1em 0;
+	padding: 0;
+}
+
+dt {
+	font-weight: bold;
+}
