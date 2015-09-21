@@ -10,7 +10,8 @@ var EXPORTS = [
     'leaflet/ArcIdentify',
     'leaflet/ArcTileLayer',
     'leaflet/FullscreenControl',
-    'leaflet/HazardFaultLayer'
+    'leaflet/HazardFaultLayer',
+    'leaflet/MousePositionControl'
   ].map(function (path) {
     return './' + config.src + '/' + path + '.js:' + path;
   })
