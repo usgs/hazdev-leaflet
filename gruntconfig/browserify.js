@@ -7,11 +7,12 @@ var EXPORTS = [
   './node_modules/leaflet/dist/leaflet-src.js:leaflet'
 ].concat(
   [
+    'leaflet/Leaflet',
     'leaflet/ArcIdentify',
-    'leaflet/ArcTileLayer',
-    'leaflet/FullscreenControl',
-    'leaflet/HazardFaultLayer',
-    'leaflet/MousePositionControl'
+    'leaflet/control/Fullscreen',
+    'leaflet/control/MousePosition',
+    'leaflet/layer/ArcTile',
+    'leaflet/layer/HazardFault'
   ].map(function (path) {
     return './' + config.src + '/' + path + '.js:' + path;
   })

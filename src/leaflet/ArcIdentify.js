@@ -1,6 +1,7 @@
 'use strict';
 
-var Util = require('util/Util'),
+var L = require('leaflet'),
+    Util = require('util/Util'),
     Xhr = require('util/Xhr');
 
 
@@ -64,5 +65,13 @@ var ArcIdentify = function (options) {
   options = null;
   return _this;
 };
+
+
+L.ArcIdentify = ArcIdentify;
+
+L.arcIdentify = function (options) {
+  return new ArcIdentify(options);
+};
+
 
 module.exports = ArcIdentify;

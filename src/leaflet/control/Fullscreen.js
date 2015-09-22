@@ -77,10 +77,12 @@ var Fullscreen = L.Control.extend({
   }
 });
 
+
 L.Control.Fullscreen = Fullscreen;
 
 L.control.fullscreen = function (options) {
   return new Fullscreen(options);
 };
+
 
 module.exports = Fullscreen;

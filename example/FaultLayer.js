@@ -1,17 +1,11 @@
 'use strict';
 
 
-var HazardFaultLayer = require('leaflet/HazardFaultLayer'),
-    L = require('leaflet');
+var L = require('leaflet/Leaflet');
 
 
-var initialize,
-
-    map;
-
-
-initialize = function () {
-  map = L.map(document.querySelector('.map'), {
+var initialize = function () {
+  var map = L.map(document.querySelector('.map'), {
     center: [40, -105],
     zoom: 3,
     layers: [
@@ -25,7 +19,7 @@ initialize = function () {
     ]
   });
 
-  HazardFaultLayer.HazardFault2014({
+  L.hazardFault2014({
     clickable: true
   }).addTo(map);
 };

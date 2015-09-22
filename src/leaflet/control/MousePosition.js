@@ -5,7 +5,7 @@ var L = require('leaflet');
 
 // Copyright 2012 Ardhi Lukianto
 // https://github.com/ardhi/Leaflet.MousePosition
-var MousePositionControl = L.Control.extend({
+var MousePosition = L.Control.extend({
   options: {
     position: 'bottomright',
     separator: ' : ',
@@ -54,10 +54,11 @@ var MousePositionControl = L.Control.extend({
 });
 
 
-L.Control.MousePosition = MousePositionControl;
+L.Control.MousePosition = MousePosition;
+
 L.control.mousePosition = function (options) {
-  return new L.Control.MousePosition(options);
+  return new MousePosition(options);
 };
 
 
-module.exports = MousePositionControl;
+module.exports = MousePosition;

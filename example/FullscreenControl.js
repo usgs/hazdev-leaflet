@@ -1,16 +1,12 @@
 'use strict';
 
 
-var Fullscreen = require('leaflet/FullscreenControl'),
-    L = require('leaflet');
+var L = require('leaflet/Leaflet');
 
 
-var initialize,
+var initialize = function () {
+  var map;
 
-    map;
-
-
-initialize = function () {
   map = L.map(document.querySelector('.map'), {
     center: [40, -105],
     zoom: 3,
@@ -25,8 +21,7 @@ initialize = function () {
     ]
   });
 
-  // L.control.fullscreen().addTo(map);
-  new Fullscreen().addTo(map);
+  L.control.fullscreen().addTo(map);
 };
 
 

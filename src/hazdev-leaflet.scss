@@ -1,4 +1,5 @@
 @import 'leaflet.css';
-@import 'leaflet/_Controls.scss';
-@import 'leaflet/_FullscreenControl.scss';
-@import 'leaflet/_MousePositionControl.scss';
+
+@import 'leaflet/control/_Control.scss';
+@import 'leaflet/control/_Fullscreen.scss';
+@import 'leaflet/control/_MousePosition.scss';

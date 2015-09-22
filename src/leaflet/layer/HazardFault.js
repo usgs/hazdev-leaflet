@@ -1,6 +1,7 @@
 'use strict';
 
-var ArcTileLayer = require('./ArcTileLayer'),
+var L = require('leaflet'),
+    ArcTile = require('./ArcTile'),
     Util = require('util/Util');
 
 
@@ -14,7 +15,7 @@ var _SLIP_SENSE_MAP = {
 var _UNKNOWN = '<span class="unknown">unspecified</span>';
 
 
-var HazardFaultLayer = ArcTileLayer.extend({
+var HazardFault = ArcTile.extend({
   _formatPopup: function (result) {
     var markup = [];
 
@@ -68,16 +69,23 @@ var HazardFaultLayer = ArcTileLayer.extend({
 });
 
 
-HazardFaultLayer.HazardFault2008 = function (options) {
-  return new HazardFaultLayer(Util.extend({
+L.HazardFault = HazardFault;
+
+L.hazardFault = function (options) {
+  return new HazardFault(options);
+};
+
+L.hazardFault2008 = function (options) {
+  return new HazardFault(Util.extend({
     url: 'http://geohazards.usgs.gov/ArcGIS/rest/services/hazfaults'
   }, options));
 };
-HazardFaultLayer.HazardFault2014 = function (options) {
-  return new HazardFaultLayer(Util.extend({
+
+L.hazardFault2014 = function (options) {
+  return new HazardFault(Util.extend({
     url: 'http://geohazards.usgs.gov/ArcGIS/rest/services/hazfaults2014'
   }, options));
 };
 
 
-module.exports = HazardFaultLayer;
+module.exports = HazardFault;
