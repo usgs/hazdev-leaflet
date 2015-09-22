@@ -1,0 +1,16 @@
+@import './__variables.scss';
+
+/* style overrides for the built in leaflet Layers control. */
+
+.leaflet-control-layers {
+  padding: 0;
+}
+
+.leaflet-control-layers-toggle {
+  height: $leaflet-control-size;
+  width: $leaflet-control-size;
+}
+
+.leaflet-control-layers-expanded {
+  padding: 4px 6px;
+}

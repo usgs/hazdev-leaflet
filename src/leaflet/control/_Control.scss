@@ -1,60 +1,29 @@
-@import '_mixins.scss';
+@import './__variables.scss';
 
 
-.leaflet-bar a,
-.leaflet-bar a:hover {
-  width: $button-size;
-  height: $button-size;
-  line-height: $button-size;
-}
-
-
+/* default controls */
 .leaflet-control {
-  @mixin basic-control;
-
-  > .leaflet-control-icon {
-    @mixin basic-control-button;
-  }
-
-  > .help {
-    @mixin basic-control-tooltip;
-  }
-
-  &:hover .help {
-    @mixin basic-control-tooltip-hover;
-  }
-}
-
-.leaflet-control-scale {
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px #333;
   padding: 4px 6px;
+}
 
-  > div {
-    background-color: transparent;
-    box-shadow: none !important;
+
+/* grouped controls */
+.leaflet-bar {
+  padding:0;
+
+  > a,
+  > a:hover {
+    width: $leaflet-control-size;
+    height: $leaflet-control-size;
+    line-height: $leaflet-control-size;
   }
 }
 
-.leaflet-left .leaflet-control-scale {
-  margin-left:10px;
-}
-.leaflet-bottom .leaflet-control-scale {
-  margin-bottom:10px;
-}
-.leaflet-right .leaflet-control-scale {
-  margin-right:10px;
-}
 
-.leaflet-touch {
-
-  .leaflet-control {
-    border:none;
-
-    &:hover .help {
-      display:none;
-    }
-  }
-
-  .leaflet-control-zoom {
-    display:none;
-  }
+/* styles for "touch" */
+.leaflet-touch .leaflet-control {
+  border:none;
 }

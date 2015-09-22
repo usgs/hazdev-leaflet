@@ -1,0 +1,18 @@
+@import './__variables.scss';
+
+
+/* style overrides for the built in leaflet Zoom control. */
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  &:hover {
+    background-color: $leaflet-control-background-hover;
+  }
+}
+
+
+.leaflet-touch {
+  .leaflet-control-zoom {
+    display: none;
+  }
+}
