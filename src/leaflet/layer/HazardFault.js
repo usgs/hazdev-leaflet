@@ -1,8 +1,7 @@
 'use strict';
 
 var L = require('leaflet'),
-    ArcTile = require('./ArcTile'),
-    Util = require('util/Util');
+    ArcTile = require('./ArcTile');
 
 
 var _SLIP_SENSE_MAP = {
@@ -15,6 +14,9 @@ var _SLIP_SENSE_MAP = {
 var _UNKNOWN = '<span class="unknown">unspecified</span>';
 
 
+/**
+ * Sub class that configures popup formatting for Hazard Fault Arc services.
+ */
 var HazardFault = ArcTile.extend({
   _formatPopup: function (result) {
     var markup = [];
@@ -73,18 +75,6 @@ L.HazardFault = HazardFault;
 
 L.hazardFault = function (options) {
   return new HazardFault(options);
-};
-
-L.hazardFault2008 = function (options) {
-  return new HazardFault(Util.extend({
-    url: 'http://geohazards.usgs.gov/ArcGIS/rest/services/hazfaults'
-  }, options));
-};
-
-L.hazardFault2014 = function (options) {
-  return new HazardFault(Util.extend({
-    url: 'http://geohazards.usgs.gov/ArcGIS/rest/services/hazfaults2014'
-  }, options));
 };
 
 

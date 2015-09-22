@@ -8,6 +8,13 @@ var copy = {
     cwd: config.test,
     dest: config.build + '/' + config.test,
     src: ['**/*.html']
+  },
+
+  leaflet: {
+    expand: true,
+    cwd: 'node_modules/leaflet/dist/images',
+    dest: config.build + '/' + config.src + '/images',
+    src: '**'
   }
 };
 

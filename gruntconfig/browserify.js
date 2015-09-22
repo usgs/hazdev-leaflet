@@ -12,7 +12,13 @@ var EXPORTS = [
     'leaflet/control/Fullscreen',
     'leaflet/control/MousePosition',
     'leaflet/layer/ArcTile',
-    'leaflet/layer/HazardFault'
+    'leaflet/layer/EsriGrayscale',
+    'leaflet/layer/EsriTerrain',
+    'leaflet/layer/HazardFault',
+    'leaflet/layer/HazardFault2008',
+    'leaflet/layer/HazardFault2014',
+    'leaflet/layer/OpenAerialMap',
+    'leaflet/layer/OpenStreetMap'
   ].map(function (path) {
     return './' + config.src + '/' + path + '.js:' + path;
   })
