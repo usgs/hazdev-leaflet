@@ -1,4 +1,12 @@
 @import 'leaflet.css';
-@import 'leaflet/_Controls.scss';
-@import 'leaflet/_FullscreenControl.scss';
-@import 'leaflet/_MousePositionControl.scss';
+
+/* base control styles */
+@import 'leaflet/control/_Control.scss';
+
+/* specific control styles */
+@import 'leaflet/control/_Attribution.scss';
+@import 'leaflet/control/_Fullscreen.scss';
+@import 'leaflet/control/_Layers.scss';
+@import 'leaflet/control/_MousePosition.scss';
+@import 'leaflet/control/_Scale.scss';
+@import 'leaflet/control/_Zoom.scss';

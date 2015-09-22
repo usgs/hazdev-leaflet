@@ -1,0 +1,29 @@
+@import './__variables.scss';
+
+
+/* default controls */
+.leaflet-control {
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px #333;
+  padding: 4px 6px;
+}
+
+
+/* grouped controls */
+.leaflet-bar {
+  padding:0;
+
+  > a,
+  > a:hover {
+    width: $leaflet-control-size;
+    height: $leaflet-control-size;
+    line-height: $leaflet-control-size;
+  }
+}
+
+
+/* styles for "touch" */
+.leaflet-touch .leaflet-control {
+  border:none;
+}

@@ -1,6 +1,6 @@
 'use strict';
 
-var ArcIdentify = require('leaflet/ArcIdentify'),
+var ArcIdentify = require('../ArcIdentify'),
     L = require('leaflet'),
     Util = require('util/Util');
 
@@ -10,7 +10,7 @@ var DEFAULTS = {
 };
 
 
-var ArcTileLayer = L.TileLayer.extend({
+var ArcTile = L.TileLayer.extend({
 
   initialize: function (options) {
     options = Util.extend({}, DEFAULTS, options);
@@ -92,10 +92,11 @@ var ArcTileLayer = L.TileLayer.extend({
 });
 
 
-L.ArcTileLayer = ArcTileLayer;
-L.arcTileLayer = function (options) {
-  return new ArcTileLayer(options);
+L.ArcTile = ArcTile;
+
+L.arcTile = function (options) {
+  return new ArcTile(options);
 };
 
 
-module.exports = ArcTileLayer;
+module.exports = ArcTile;

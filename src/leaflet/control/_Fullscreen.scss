@@ -1,17 +1,21 @@
-.leaflet-container a.leaflet-control-fullscreen {
-  border-radius: 2px;
+@import './__variables.scss';
+
+
+/* using "a.class" prevents default anchor color */
+a.leaflet-control-fullscreen {
   color: #333;
   cursor: pointer;
   display: block;
   font-family: 'Lucida Console', Monaco, monospace;
   font-size: 22px;
-  height: 30px;
-  line-height: 30px;
+  height: $leaflet-control-size;
+  line-height: $leaflet-control-size;
+  padding: 0;
   text-align: center;
-  width: 30px;
+  width: $leaflet-control-size;
 
   &:hover {
-    background-color: #f4f4f4;
+    background-color: $leaflet-control-background-hover;
   }
 }
 
@@ -21,9 +25,9 @@
   left: 0;
   margin: 0;
   padding: 0;
+  position: fixed !important;
   right: 0;
   top: 0;
   width: auto;
   z-index: 999;
-  position: fixed !important;
 }
