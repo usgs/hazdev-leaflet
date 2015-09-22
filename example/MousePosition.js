@@ -1,6 +1,5 @@
 'use strict';
 
-
 var L = require('leaflet');
 
 // this file defines the "L.control.mousePosition()" factory.
