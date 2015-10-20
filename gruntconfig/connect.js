@@ -13,8 +13,8 @@ var connect = {
         config.example
       ],
       livereload: true,
-      open: 'http://localhost:8000/example.html',
-      port: 8000
+      open: 'http://localhost:8020/example.html',
+      port: 8020
     }
   },
 
@@ -25,8 +25,8 @@ var connect = {
         config.build + '/' + config.test,
         'node_modules'
       ],
-      open: 'http://localhost:8001/test.html',
-      port: 8001
+      open: 'http://localhost:8021/test.html',
+      port: 8021
     }
   },
 
@@ -37,8 +37,8 @@ var connect = {
         config.example
       ],
       keepalive: true,
-      open: 'http://localhost:8002/example.html',
-      port: 8002
+      open: 'http://localhost:8022/example.html',
+      port: 8022
     }
   }
 };
