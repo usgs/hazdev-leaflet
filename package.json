@@ -51,6 +51,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mocha-phantomjs": "^1.0.2",
     "grunt-postcss": "^0.5.5",
+    "hazdev-template": "git://github.com/usgs/hazdev-template.git",
     "hazdev-webutils": "usgs/hazdev-webutils",
     "leaflet": "^0.7.3",
     "mocha": "^2.2.5",
