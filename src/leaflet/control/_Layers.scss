@@ -3,7 +3,9 @@
 /* style overrides for the built in leaflet Layers control. */
 
 .leaflet-control-layers {
+  left: 0;
   padding: 0;
+  position: relative;
 }
 
 .leaflet-control-layers-toggle {
@@ -14,3 +16,15 @@
 .leaflet-control-layers-expanded {
   padding: 4px 6px;
 }
+
+input.leaflet-control-layers-selector {
+  box-sizing: border-box;
+  display: inline;
+  left: 0;
+  margin-top: 2px;
+  top: 1px;
+  position: relative;
+  width: initial;
+  -webkit-appearance: radio;
+}
+
