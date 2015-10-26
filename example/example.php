@@ -5,7 +5,6 @@ if (!isset($TEMPLATE)) {
 include '_example.inc.php';
 ?>
 
-<h1>Examples Index</h1>
 <ul>
   <li><a href="Baselayers.php">Base Layers Example</a></li>
   <li><a href="Builtin.php">Builtin Controls Example</a></li>
