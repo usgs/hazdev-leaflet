@@ -1,26 +1,30 @@
 'use strict';
 
+var L = require('leaflet');
 
-var L = require('leaflet'),
-    Util = require('util/Util');
+// this file defines L.ArcGisOnline
+require('./ArcGisOnline');
 
 
 /**
- * Factory for ESRI Grayscale base layer.
+ * ESRI Grayscale base layer.
  */
-var EsriGrayscale = function (options) {
-  options = Util.extend({
-    subdomains: ['server', 'services'],
-    attribution: 'Sources: Esri, DeLorme, HERE, MapmyIndia,  &copy; ' +
-        'OpenStreetMap contributors, and the GIS community'
-  }, options);
+var EsriGrayscale = L.ArcGisOnline.extend({
 
-  return L.tileLayer('http://{s}.arcgisonline.com/ArcGIS/rest/services/' +
-      'Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}.jpg', options);
+  options: {
+    attribution: 'Sources: Esri, DeLorme, HERE, MapmyIndia, &copy;' +
+        ' OpenStreetMap contributors, and the GIS community',
+    service: 'Canvas/World_Light_Gray_Base'
+  }
+
+});
+
+
+L.EsriGrayscale = EsriGrayscale;
+
+L.esriGrayscale = function (options) {
+  return new EsriGrayscale(options);
 };
-
-
-L.esriGrayscale = EsriGrayscale;
 
 
 module.exports = EsriGrayscale;
