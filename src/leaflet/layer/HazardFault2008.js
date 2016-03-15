@@ -1,8 +1,8 @@
+/* global L */
 'use strict';
 
 
-var L = require('leaflet'),
-    HazardFault = require('./HazardFault'),
+var HazardFault = require('./HazardFault'),
     Util = require('util/Util');
 
 

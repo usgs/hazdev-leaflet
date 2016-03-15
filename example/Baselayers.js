@@ -1,6 +1,6 @@
+/* global L */
 'use strict';
 
-var L = require('leaflet');
 
 // this file defines the factory "L.esriGrayscale()"
 require('leaflet/layer/EsriGrayscale');

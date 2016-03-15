@@ -1,8 +1,8 @@
-/* global chai, describe, it */
+/* global chai, describe, it, L */
 'use strict';
 
-var expect = chai.expect,
-    L = require('leaflet');
+
+var expect = chai.expect;
 
 
 describe('Leaflet', function () {

@@ -1,6 +1,5 @@
+/* global L */
 'use strict';
-
-var L = require('leaflet');
 
 
 // Copyright 2012 Ardhi Lukianto

@@ -5,6 +5,14 @@ if (!isset($TEMPLATE)) {
   $pageUrl = str_replace(
       strstr($_SERVER['REQUEST_URI'], '?'), '',
       $_SERVER['REQUEST_URI']);
+
+  // Inject leaflet script to all example pages
+  if (isset($FOOT)) {
+    $FOOT = '<script src="/lib/leaflet-0.7.7/leaflet.js"></script>' . $FOOT;
+  } else {
+    $FOOT = '<script src="/lib/leaflet-0.7.7/leaflet.js"></script>';
+  }
+
   if ($useTemplate) {
     include 'template.inc.php';
   } else {

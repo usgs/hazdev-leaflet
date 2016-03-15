@@ -1,7 +1,7 @@
+/* global L */
 'use strict';
 
-var L = require('leaflet'),
-    Util = require('util/Util'),
+var Util = require('util/Util'),
     Xhr = require('util/Xhr');
 
 
