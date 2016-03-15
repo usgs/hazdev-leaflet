@@ -5,6 +5,22 @@ if (!isset($TEMPLATE)) {
   $pageUrl = str_replace(
       strstr($_SERVER['REQUEST_URI'], '?'), '',
       $_SERVER['REQUEST_URI']);
+
+  // Inject leaflet styles to all example pages
+  if (isset($HEAD)) {
+    $HEAD = '<link rel="stylesheet" href="/lib/leaflet-0.7.7/leaflet.css"/>' .
+        $HEAD;
+  } else {
+    $HEAD = '<link rel="stylesheet" href="/lib/leaflet-0.7.7/leaflet.css"/>';
+  }
+
+  // Inject leaflet script to all example pages
+  if (isset($FOOT)) {
+    $FOOT = '<script src="/lib/leaflet-0.7.7/leaflet.js"></script>' . $FOOT;
+  } else {
+    $FOOT = '<script src="/lib/leaflet-0.7.7/leaflet.js"></script>';
+  }
+
   if ($useTemplate) {
     include 'template.inc.php';
   } else {

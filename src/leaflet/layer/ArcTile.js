@@ -1,7 +1,7 @@
+/* global L */
 'use strict';
 
 var ArcIdentify = require('../ArcIdentify'),
-    L = require('leaflet'),
     Util = require('util/Util');
 
 

@@ -1,6 +1,5 @@
+/* global L */
 'use strict';
-
-var L = require('leaflet');
 
 
 var Fullscreen = L.Control.extend({

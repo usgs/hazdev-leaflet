@@ -1,7 +1,5 @@
+/* global L */
 'use strict';
-
-
-var L = require('leaflet');
 
 
 // the following classes add properties to the `L` object.
