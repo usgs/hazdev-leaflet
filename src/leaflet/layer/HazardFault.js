@@ -1,7 +1,7 @@
+/* global L */
 'use strict';
 
-var L = require('leaflet'),
-    ArcTile = require('./ArcTile');
+var ArcTile = require('leaflet/layer/ArcTile');
 
 
 var _SLIP_SENSE_MAP = {

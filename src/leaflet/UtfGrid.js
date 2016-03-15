@@ -1,3 +1,4 @@
+/* global L */
 /**
  * Copyright (c) 2012, Smartrak, David Leaver
  * Leaflet.utfgrid is an open-source JavaScript library that provides utfgrid
@@ -9,8 +10,6 @@
 // 04/11/13 -- EMM: This is an AMD'd (require.js) version of the original
 //                  source.
 'use strict';
-
-var L = require('leaflet');
 
 
 L.Util.ajax = function (url, cb) {

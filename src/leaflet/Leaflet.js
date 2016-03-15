@@ -7,24 +7,24 @@
 
 
 // utilities
-require('./ArcIdentify');
-require('./UtfGrid');
+require('leaflet/ArcIdentify');
+require('leaflet/UtfGrid');
 
 // controls
-require('./control/Fullscreen');
-require('./control/MousePosition');
+require('leaflet/control/Fullscreen');
+require('leaflet/control/MousePosition');
 
 // layers
-require('./layer/ArcTile');
-require('./layer/AsynchronousGeoJson');
-require('./layer/EsriGrayscale');
-require('./layer/EsriTerrain');
-require('./layer/HazardFault');
-require('./layer/HazardFault2008');
-require('./layer/HazardFault2014');
-require('./layer/MouseOverLayer');
-require('./layer/OpenAerialMap');
-require('./layer/OpenStreetMap');
+require('leaflet/layer/ArcTile');
+require('leaflet/layer/AsynchronousGeoJson');
+require('leaflet/layer/EsriGrayscale');
+require('leaflet/layer/EsriTerrain');
+require('leaflet/layer/HazardFault');
+require('leaflet/layer/HazardFault2008');
+require('leaflet/layer/HazardFault2014');
+require('leaflet/layer/MouseOverLayer');
+require('leaflet/layer/OpenAerialMap');
+require('leaflet/layer/OpenStreetMap');
 
 
 module.exports = L;
