@@ -2,7 +2,7 @@
 'use strict';
 
 
-var HazardFault = require('./HazardFault'),
+var HazardFault = require('leaflet/layer/HazardFault'),
     Util = require('util/Util');
 
 
