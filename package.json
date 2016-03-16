@@ -36,9 +36,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "autoprefixer-core": "^6.0.1",
-    "chai": "^3.2.0",
-    "compression": "^1.6.0",
+    "autoprefixer": "^6.3.3",
+    "chai": "^3.5.0",
+    "compression": "^1.6.1",
     "cssnano": "^3.5.2",
     "gateway": "^1.0.0",
     "grunt": "^0.4.5",
@@ -49,19 +49,20 @@
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-connect": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-cssmin": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
     "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-uglify": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-mocha-phantomjs": "^3.0.0",
     "grunt-postcss": "^0.8.0",
-    "hazdev-template": "~0.2.0",
-    "hazdev-webutils": "~0.1.0",
-    "leaflet": "^0.7.3",
-    "mocha": "^2.2.5",
+    "hazdev-template": "~0.2.3",
+    "hazdev-webutils": "~0.1.7",
+    "leaflet": "^0.7.7",
+    "mocha": "^2.4.5",
     "precss": "^1.4.0",
-    "sinon": "^1.12.2"
+    "sinon": "^1.17.3"
   },
+  "license": "CC0-1.0",
   "engines": {
     "node": ">=0.10.0"
   }
