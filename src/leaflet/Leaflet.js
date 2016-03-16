@@ -12,6 +12,7 @@ require('leaflet/UtfGrid');
 
 // controls
 require('leaflet/control/Fullscreen');
+require('leaflet/control/HazDevLayers');
 require('leaflet/control/MousePosition');
 
 // layers
@@ -25,6 +26,8 @@ require('leaflet/layer/HazardFault2014');
 require('leaflet/layer/MouseOverLayer');
 require('leaflet/layer/OpenAerialMap');
 require('leaflet/layer/OpenStreetMap');
+require('leaflet/layer/TectonicPlates');
+require('leaflet/layer/UsFault');
 
 
 module.exports = L;

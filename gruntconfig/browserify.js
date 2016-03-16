@@ -7,18 +7,26 @@ var EXPORTS = [
   './node_modules/leaflet/dist/leaflet-src.js:leaflet'
 ].concat(
   [
-    'leaflet/Leaflet',
     'leaflet/ArcIdentify',
+    'leaflet/Leaflet',
+    'leaflet/UtfGrid',
+
     'leaflet/control/Fullscreen',
+    'leaflet/control/HazDevLayers',
     'leaflet/control/MousePosition',
+
     'leaflet/layer/ArcTile',
+    'leaflet/layer/AsynchronousGeoJson',
     'leaflet/layer/EsriGrayscale',
     'leaflet/layer/EsriTerrain',
     'leaflet/layer/HazardFault',
     'leaflet/layer/HazardFault2008',
     'leaflet/layer/HazardFault2014',
+    'leaflet/layer/MouseOverLayer',
     'leaflet/layer/OpenAerialMap',
-    'leaflet/layer/OpenStreetMap'
+    'leaflet/layer/OpenStreetMap',
+    'leaflet/layer/TectonicPlates',
+    'leaflet/layer/UsFault'
   ].map(function (path) {
     return './' + config.src + '/' + path + '.js:' + path;
   })
