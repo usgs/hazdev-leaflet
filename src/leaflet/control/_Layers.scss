@@ -1,7 +1,6 @@
 @import './__variables.scss';
 
 /* style overrides for the built in leaflet Layers control. */
-
 .leaflet-control-layers {
   left: 0;
   padding: 0;
@@ -17,14 +16,16 @@
   padding: 4px 6px;
 }
 
-input.leaflet-control-layers-selector {
-  box-sizing: border-box;
-  display: inline;
-  left: 0;
-  margin-top: 2px;
-  top: 1px;
-  position: relative;
-  width: initial;
-  -webkit-appearance: radio;
+.leaflet-control-layers-selector + label {
+  margin-bottom: 1em;
+
+  &:before {
+    position: relative;
+    top: 2px;
+  }
 }
 
+.leaflet-control-layers-selector[type='radio'] + label:before {
+  width: 1em;
+  height: 1em;
+}
