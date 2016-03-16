@@ -60,4 +60,4 @@ L.control.mousePosition = function (options) {
 };
 
 
-module.exports = MousePosition;
+module.exports = L.control.mousePosition;
