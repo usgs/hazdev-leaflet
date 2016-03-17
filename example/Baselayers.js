@@ -11,6 +11,9 @@ require('leaflet/layer/OpenAerialMap');
 // this file defines the factory "L.openStreetMap()"
 require('leaflet/layer/OpenStreetMap');
 
+// Custom layers control...
+require('leaflet/control/HazDevLayers');
+
 
 var initialize = function () {
   var grayscale,
@@ -30,7 +33,7 @@ var initialize = function () {
     layers: [terrain]
   });
 
-  L.control.layers({
+  L.control.hazDevLayers({
     'Grayscale': grayscale,
     'Satellite': satellite,
     'Street': street,

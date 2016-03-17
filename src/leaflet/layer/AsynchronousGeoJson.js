@@ -62,4 +62,4 @@ L.asynchronousGeoJSON = function (options) {
 };
 
 
-module.exports = AsynchronousGeoJson;
+module.exports = L.asynchronousGeoJson;

@@ -133,4 +133,4 @@ L.mouseOverLayer = function (options) {
 };
 
 
-module.exports = L.MouseOverLayer;
+module.exports = L.mouseOverLayer;
