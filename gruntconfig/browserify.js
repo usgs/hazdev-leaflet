@@ -14,6 +14,7 @@ var EXPORTS = [
     'leaflet/control/Fullscreen',
     'leaflet/control/HazDevLayers',
     'leaflet/control/MousePosition',
+    'leaflet/control/ZoomToControl',
 
     'leaflet/layer/ArcTile',
     'leaflet/layer/AsynchronousGeoJson',

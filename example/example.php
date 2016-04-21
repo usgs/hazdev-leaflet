@@ -11,4 +11,5 @@ include '_example.inc.php';
   <li><a href="HazardFault.php">HazardFault Layer Example</a></li>
   <li><a href="Fullscreen.php">Fullscreen Control Example</a></li>
   <li><a href="MousePosition.php">MousePosition Control Example</a></li>
+  <li><a href="ZoomToControl.php">ZoomTo Control Example</a></li>
 </ul>
