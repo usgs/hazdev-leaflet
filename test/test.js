@@ -40,6 +40,7 @@ if (!Function.prototype.bind) {
 
   // Add each test class here as they are implemented
   require('./spec/leaflet/LeafletTest');
+  require('./spec/leaflet/ZoomToControlTest');
 
   if (window.mochaPhantomJS) {
       window.mochaPhantomJS.run();
