@@ -7,12 +7,14 @@ var CLASS_NAME = 'location-zoomto-control';
 var DEFAULTS = {
   'locations': [
       {
-        title:'World',
-        bounds:[[70,20],[-70,380]]
+        title:'U.S.',
+        id: 'us',
+        bounds:[[50,-125], [24.6,-65]]
       },
       {
-        title:'U.S.',
-        bounds:[[50,-125], [24.6,-65]]
+        title:'World',
+        id: 'world',
+        bounds:[[70,20],[-70,380]]
       }
     ],
   'position': 'topleft'
@@ -22,12 +24,18 @@ var DEFAULTS = {
  * ZoomToControl
  *    A control that zooms to a specific region on the map.
  *
- * @params
- *    options: {object}
- *      locations: array of objects
- *        object:
- *          title: string
- *          bounds: array
+ * @params options {Object}
+ *    object containing other parameters passed in
+ * @params options.locations
+ *    array of objects
+ * @params options.locations[] {Object}
+ *    Array of title/bounds objects.
+ * @params options.locations[].title {string}
+ *    The title of the bounds to be zoomed to.
+* @params options.locations[].id {string}
+ *    A unique id for identifying the zoomto region.
+ * @params options.locations[].bounds {array}
+ *    An Array of coordinate bounds.
  */
 var ZoomToControl = L.Control.extend({
   include: L.Mixin.Events,
@@ -42,12 +50,13 @@ var ZoomToControl = L.Control.extend({
    * @params map {leaflet.map}
    */
   onAdd: function (map) {
-    var options = this.options,
-        container,
+    var container,
         locations,
         option,
+        options,
         select;
 
+    options = this.options;
     locations = options.locations;
 
     container = document.createElement('div');
@@ -61,18 +70,17 @@ var ZoomToControl = L.Control.extend({
     option = document.createElement('OPTION');
     option.text = 'Zoom to...';
     option.value = 'jump';
-    select.options.add(option);
+    select.appendChild(option);
     // Add all options from locations.
     for(var i = 0; i < locations.length; ++i) {
         option = document.createElement('OPTION');
         option.text = locations[i].title;
-        option.value = locations[i].title;
+        option.value = locations[i].id;
         select.options.add(option);
       }
 
     this._container = container;
     this._map = map;
-
     //Disable propagation for old style mouse/touch
     //Includes ie11
     L.DomEvent.disableClickPropagation(container);
@@ -87,7 +95,7 @@ var ZoomToControl = L.Control.extend({
 
   /**
    * On Add Pointer Down Event
-   *
+   *    Disable propagation for ie11/microsoft touch
    * @params e {event}
    *
    * @notes Changed from an inline function, to a seperate function for
@@ -127,13 +135,23 @@ var ZoomToControl = L.Control.extend({
    * @params e {event}
    *    selectedIndex: the index of the selected item
    */
-  _setZoom: function(e) {
-    var index;
+  _setZoom: function (e) {
+    var index,
+        location,
+        locations,
+        value;
 
+    locations = this.options.locations;
     e = Util.getEvent(e);
     index = e.target.selectedIndex;
+    value = e.target.value;
 
-    this._map.fitBounds(this.options.locations[index -1].bounds);
+    for (location=0; location < locations.length; location++) {
+      if (locations[location].id === value) {
+        this._map.fitBounds(locations[location].bounds);
+        break;
+      }
+    }
 
     // Set the set box back to Zoom to
     e.target.selectedIndex = 0;
@@ -141,4 +159,11 @@ var ZoomToControl = L.Control.extend({
 
 });
 
-module.exports = ZoomToControl;
+
+L.Control.ZoomToControl = ZoomToControl;
+
+L.control.zoomToControl = function (options) {
+  return new ZoomToControl(options);
+};
+
+module.exports = L.control.zoomToControl;
