@@ -1,7 +1,11 @@
 /* global L */
 'use strict';
 
+
+var EsriTerrain = require('leaflet/layer/EsriTerrain');
+
 require('leaflet/control/ZoomToControl');
+
 
 var initialize = function () {
   var locations,
@@ -49,13 +53,13 @@ var initialize = function () {
 
 
   map = L.map(document.querySelector('.map'), {
-      center: L.latLng(40.0, -105.0),
-      zoom: 3
+      center: [40.0, -105.0],
+      zoom: 3,
+      zoomControl: false
     });
 
   zoomTo = L.control.zoomToControl({locations:locations});
-  natgeo = L.tileLayer('http://server.arcgisonline.com' +
-      '/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}');
+  natgeo = EsriTerrain();
 
   map.addLayer(natgeo);
   map.addControl(zoomTo);
