@@ -1,5 +1,7 @@
 /* global L */
 'use strict';
+
+
 var Util = require('util/Util');
 
 var CLASS_NAME = 'location-zoomto-control';
@@ -19,6 +21,7 @@ var DEFAULTS = {
     ],
   'position': 'topleft'
 };
+
 
 /**
  * ZoomToControl
@@ -51,6 +54,7 @@ var ZoomToControl = L.Control.extend({
    */
   onAdd: function (map) {
     var container,
+        i,
         locations,
         option,
         options,
@@ -72,11 +76,11 @@ var ZoomToControl = L.Control.extend({
     option.value = 'jump';
     select.appendChild(option);
     // Add all options from locations.
-    for(var i = 0; i < locations.length; ++i) {
+    for(i = 0; i < locations.length; ++i) {
         option = document.createElement('OPTION');
         option.text = locations[i].title;
         option.value = locations[i].id;
-        select.options.add(option);
+        select.appendChild(option);
       }
 
     this._container = container;
