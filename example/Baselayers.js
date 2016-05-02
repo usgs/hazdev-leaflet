@@ -11,6 +11,8 @@ require('leaflet/layer/OpenAerialMap');
 // this file defines the factory "L.openStreetMap()"
 require('leaflet/layer/OpenStreetMap');
 
+require('leaflet/layer/CartoDBGrayScale');
+
 // Custom layers control...
 require('leaflet/control/HazDevLayers');
 
@@ -20,12 +22,14 @@ var initialize = function () {
       map,
       satellite,
       street,
-      terrain;
+      terrain,
+      test;
 
   grayscale = L.esriGrayscale();
   satellite = L.openAerialMap();
   street = L.openStreetMap();
   terrain = L.esriTerrain();
+  test = L.cartodb();
 
   map = L.map(document.querySelector('.map'), {
     center: [40, -105],
@@ -37,7 +41,8 @@ var initialize = function () {
     'Grayscale': grayscale,
     'Satellite': satellite,
     'Street': street,
-    'Terrain': terrain
+    'Terrain': terrain,
+    'test' : test
   }).addTo(map);
 };
 
