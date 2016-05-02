@@ -1,18 +1,20 @@
-/* global chai, describe, it, beforeEach, sinon, L */
+/* global chai, describe, it, beforeEach, sinon, L*/
 'use strict';
 
-require('leaflet/control/ZoomToControl');
+
+var ZoomToControl = require('leaflet/control/ZoomToControl');
 
 var expect = chai.expect;
 
 var control = null;
 
 var map = L.map(L.DomUtil.create('div', 'map'), {
-  center: L.latLng(40.0, -105.0),
+  center: [40.0, -105.0],
   zoom: 3
 });
 
-describe('ZoomTo Control tests suite', function () {
+
+describe('control/ZoomToControl', function () {
 
   beforeEach(function () {
     var locations;
@@ -30,15 +32,19 @@ describe('ZoomTo Control tests suite', function () {
       },
     ];
 
-    control = L.control.zoomToControl({locations:locations});
+    control = ZoomToControl({locations:locations});
 
     map.addControl(control);
   });
 
   describe('Class Definition', function () {
     it('Can be required', function () {
+      var control;
+
+      control = ZoomToControl();
+
       /* jshint -W030 */
-      expect(L.control.zoomToControl).to.not.be.null;
+      expect(ZoomToControl).to.not.be.null;
       /* jshint +W030 */
     });
 
@@ -86,5 +92,4 @@ describe('ZoomTo Control tests suite', function () {
       expect(element.selectedIndex).to.equal(0);
     });
   });
-
 });
