@@ -39,10 +39,6 @@ describe('control/ZoomToControl', function () {
 
   describe('Class Definition', function () {
     it('Can be required', function () {
-      var control;
-
-      control = ZoomToControl();
-
       /* jshint -W030 */
       expect(ZoomToControl).to.not.be.null;
       /* jshint +W030 */
@@ -72,7 +68,7 @@ describe('control/ZoomToControl', function () {
       /* jshint +W030 */
     });
 
-    it('Can be Selected', function () {
+    it('Can be selected', function () {
       var element,
           evt,
           save;

@@ -4,9 +4,9 @@
 
 var Util = require('util/Util');
 
-var CLASS_NAME = 'location-zoomto-control';
+var _CLASS_NAME = 'location-zoomto-control';
 
-var DEFAULTS = {
+var _DEFAULTS = {
   'locations': [
       {
         title:'U.S.',
@@ -44,7 +44,7 @@ var ZoomToControl = L.Control.extend({
   include: L.Mixin.Events,
 
   initialize: function (options) {
-    L.Util.setOptions(this, L.Util.extend({}, DEFAULTS, options));
+    L.Util.setOptions(this, L.Util.extend({}, _DEFAULTS, options));
   },
 
   /**
@@ -65,19 +65,19 @@ var ZoomToControl = L.Control.extend({
 
     container = document.createElement('div');
     container.classList.add('zoomto-control');
-    container.classList.add(CLASS_NAME);
+    container.classList.add(_CLASS_NAME);
     //Add Select element
     select = document.createElement('select');
-    select.classList.add(CLASS_NAME + '-list');
+    select.classList.add(_CLASS_NAME + '-list');
     container.appendChild(select);
     // Create default option (Zoom To)
-    option = document.createElement('OPTION');
+    option = document.createElement('option');
     option.text = 'Zoom to...';
     option.value = 'jump';
     select.appendChild(option);
     // Add all options from locations.
     for(i = 0; i < locations.length; ++i) {
-        option = document.createElement('OPTION');
+        option = document.createElement('option');
         option.text = locations[i].title;
         option.value = locations[i].id;
         select.appendChild(option);
@@ -122,7 +122,7 @@ var ZoomToControl = L.Control.extend({
 
     container = this._container;
     map = this._map;
-    select = container.querySelector('.' + CLASS_NAME +'-list');
+    select = container.querySelector('.' + _CLASS_NAME +'-list');
 
     L.DomEvent.removeListener(select, 'change', this._setZoom);
     L.DomEvent.removeListener(select, 'pointerdown',
