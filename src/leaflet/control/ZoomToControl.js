@@ -4,7 +4,7 @@
 
 var Util = require('util/Util');
 
-var _CLASS_NAME = 'location-zoomto-control';
+var _CLASS_NAME = 'zoomto-control';
 
 var _DEFAULTS = {
   'locations': [
@@ -41,95 +41,26 @@ var _DEFAULTS = {
  *    An Array of coordinate bounds.
  */
 var ZoomToControl = L.Control.extend({
-  include: L.Mixin.Events,
-
   initialize: function (options) {
     L.Util.setOptions(this, L.Util.extend({}, _DEFAULTS, options));
   },
 
-  /**
-   * onAdd Add the select element and container to the map
-   *
-   * @params map {leaflet.map}
-   */
-  onAdd: function (map) {
-    var container,
-        i,
-        locations,
-        option,
-        options,
-        select;
-
-    options = this.options;
-    locations = options.locations;
-
-    container = document.createElement('div');
-    container.classList.add('zoomto-control');
-    container.classList.add(_CLASS_NAME);
-    //Add Select element
-    select = document.createElement('select');
-    select.classList.add(_CLASS_NAME + '-list');
-    container.appendChild(select);
-    // Create default option (Zoom To)
-    option = document.createElement('option');
-    option.text = 'Zoom to...';
-    option.value = 'jump';
-    select.appendChild(option);
-    // Add all options from locations.
-    for(i = 0; i < locations.length; ++i) {
-        option = document.createElement('option');
-        option.text = locations[i].title;
-        option.value = locations[i].id;
-        select.appendChild(option);
-      }
-
-    this._container = container;
-    this._map = map;
-    //Disable propagation for old style mouse/touch
-    //Includes ie11
-    L.DomEvent.disableClickPropagation(container);
-
-    //Disable propagation for ie11/microsoft touch
-    L.DomEvent
-      .on(select, 'change', this._setZoom, this)
-      .on(select, 'pointerdown', this._onAddPointerDownEvent, this);
-
-    return container;
-  },
 
   /**
    * On Add Pointer Down Event
    *    Disable propagation for ie11/microsoft touch
+   *
    * @params e {event}
    *
    * @notes Changed from an inline function, to a seperate function for
    *    removeListener to work.
    */
   _onAddPointerDownEvent: function (e) {
-    var evt = e ? e : window.event;
-        evt.returnValue = false;
-        evt.cancelBubble = true;
-    },
+    var evt;
 
-  /**
-   * onRemove
-   *    Removes listeners from dom.
-   */
-  onRemove: function () {
-    var container,
-        map,
-        select;
-
-    container = this._container;
-    map = this._map;
-    select = container.querySelector('.' + _CLASS_NAME +'-list');
-
-    L.DomEvent.removeListener(select, 'change', this._setZoom);
-    L.DomEvent.removeListener(select, 'pointerdown',
-        this._onAddPointerDownEvent);
-
-    this._container = null;
-    this._map = null;
+    evt = e ? e : window.event;
+    evt.returnValue = false;
+    evt.cancelBubble = true;
   },
 
   /**
@@ -140,27 +71,94 @@ var ZoomToControl = L.Control.extend({
    *    selectedIndex: the index of the selected item
    */
   _setZoom: function (e) {
-    var index,
-        location,
+    var i,
+        len,
         locations,
         value;
 
-    locations = this.options.locations;
+    locations = (this.options || {}).locations || [];
+    len = locations.length;
     e = Util.getEvent(e);
-    index = e.target.selectedIndex;
     value = e.target.value;
 
-    for (location=0; location < locations.length; location++) {
-      if (locations[location].id === value) {
-        this._map.fitBounds(locations[location].bounds);
+    for (i = 0; i < len; i++) {
+      if (locations[i].id === value) {
+        this._map.fitBounds(locations[i].bounds);
         break;
       }
     }
 
-    // Set the set box back to Zoom to
+    // Set the select box back to Zoom to
     e.target.selectedIndex = 0;
-  }
+  },
 
+
+  /**
+   * onAdd Add the select element and container to the map
+   *
+   * @params map {leaflet.map}
+   */
+  onAdd: function (map) {
+    var container,
+        i,
+        len,
+        locations,
+        option,
+        select;
+
+    locations = (this.options || {}).locations || [];
+    len = locations.length;
+
+    container = document.createElement('div');
+    container.classList.add(_CLASS_NAME);
+
+    // Add Select element
+    select = container.appendChild(document.createElement('select'));
+    select.classList.add(_CLASS_NAME + '-list');
+
+    // Create default option (Zoom To)
+    option = select.appendChild(document.createElement('option'));
+    option.innerHTML = 'Zoom to...';
+    option.value = 'jump';
+
+    // Add all options from locations.
+    for (i = 0; i < len; i++) {
+      option = select.appendChild(document.createElement('option'));
+      option.innerHTML = locations[i].title;
+      option.value = locations[i].id;
+    }
+
+    this._container = container;
+    this._map = map;
+
+    // Disable propagation for old style mouse/touch
+    // Includes ie11
+    L.DomEvent.disableClickPropagation(container);
+
+    // Disable propagation for ie11/microsoft touch
+    L.DomEvent
+      .on(select, 'change', this._setZoom, this)
+      .on(select, 'pointerdown', this._onAddPointerDownEvent, this);
+
+    return container;
+  },
+
+  /**
+   * onRemove
+   *    Removes listeners from dom.
+   */
+  onRemove: function () {
+    var select;
+
+    select = this._container.querySelector('.' + _CLASS_NAME + '-list');
+
+    L.DomEvent
+      .off(select, 'change', this._setZoom)
+      .off(select, 'pointerdown', this._onAddPointerDownEvent);
+
+    this._container = null;
+    this._map = null;
+  }
 });
 
 

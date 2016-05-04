@@ -74,7 +74,7 @@ describe('control/ZoomToControl', function () {
           save;
 
       element = control._container.querySelector(
-          '.location-zoomto-control-list');
+          '.zoomto-control-list');
       element.selectedIndex = 1;
       element.value = 'alaska';
       save = sinon.spy(control._map, 'fitBounds');
