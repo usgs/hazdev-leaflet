@@ -18,8 +18,8 @@ require('leaflet/control/MousePosition');
 // layers
 require('leaflet/layer/ArcTile');
 require('leaflet/layer/AsynchronousGeoJson');
-require('leaflet/layer/EsriGrayscale');
-require('leaflet/layer/EsriTerrain');
+require('leaflet/layer/Grayscale');
+require('leaflet/layer/Terrain');
 require('leaflet/layer/HazardFault');
 require('leaflet/layer/HazardFault2008');
 require('leaflet/layer/HazardFault2014');

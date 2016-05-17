@@ -18,8 +18,7 @@ var EXPORTS = [
 
     'leaflet/layer/ArcTile',
     'leaflet/layer/AsynchronousGeoJson',
-    'leaflet/layer/EsriTerrain',
-    'leaflet/layer/GrayscaleLayer',
+    'leaflet/layer/Grayscale',
     'leaflet/layer/HazardFault',
     'leaflet/layer/HazardFault2008',
     'leaflet/layer/HazardFault2014',
@@ -27,8 +26,13 @@ var EXPORTS = [
     'leaflet/layer/OpenAerialMap',
     'leaflet/layer/OpenStreetMap',
     'leaflet/layer/TectonicPlates',
+<<<<<<< 9ec8e5a92b019c99b599cc81231e68533999901f
     'leaflet/layer/UsFault',
     'leaflet/layer/UsHazard'
+=======
+    'leaflet/layer/Terrain',
+    'leaflet/layer/UsFault'
+>>>>>>> changed name of gray scale layer and added to terrain layers
   ].map(function (path) {
     return './' + config.src + '/' + path + '.js:' + path;
   })
