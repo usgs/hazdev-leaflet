@@ -18,9 +18,8 @@ var EXPORTS = [
 
     'leaflet/layer/ArcTile',
     'leaflet/layer/AsynchronousGeoJson',
-    'leaflet/layer/CartoDBGrayScale',
-    'leaflet/layer/EsriGrayscale',
     'leaflet/layer/EsriTerrain',
+    'leaflet/layer/GrayscaleLayer',
     'leaflet/layer/HazardFault',
     'leaflet/layer/HazardFault2008',
     'leaflet/layer/HazardFault2014',
