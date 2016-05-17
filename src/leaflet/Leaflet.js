@@ -24,7 +24,7 @@ require('leaflet/layer/HazardFault');
 require('leaflet/layer/HazardFault2008');
 require('leaflet/layer/HazardFault2014');
 require('leaflet/layer/MouseOverLayer');
-require('leaflet/layer/OpenAerialMap');
+require('leaflet/layer/Satellite');
 require('leaflet/layer/OpenStreetMap');
 require('leaflet/layer/TectonicPlates');
 require('leaflet/layer/UsFault');

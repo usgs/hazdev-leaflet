@@ -23,7 +23,7 @@ var EXPORTS = [
     'leaflet/layer/HazardFault2008',
     'leaflet/layer/HazardFault2014',
     'leaflet/layer/MouseOverLayer',
-    'leaflet/layer/OpenAerialMap',
+    'leaflet/layer/Satellite',
     'leaflet/layer/OpenStreetMap',
     'leaflet/layer/TectonicPlates',
 <<<<<<< 9ec8e5a92b019c99b599cc81231e68533999901f

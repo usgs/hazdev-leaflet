@@ -4,7 +4,7 @@
 
 require('leaflet/layer/Grayscale');
 // this file defines the factory "L.openAerialMap()"
-require('leaflet/layer/OpenAerialMap');
+require('leaflet/layer/Satellite');
 // this file defines the factory "L.openStreetMap()"
 require('leaflet/layer/OpenStreetMap');
 // this file defines the factory "L.Terrain()"
@@ -18,6 +18,7 @@ var initialize = function () {
       grayscaleCartodb,
       map,
       satellite,
+      satelliteEsri,
       street,
       terrain,
       terrainWorldTopoMap;
@@ -28,7 +29,11 @@ var initialize = function () {
     'provider': L.Grayscale.CARTODB
   });
 
-  satellite = L.openAerialMap();
+  satellite = L.Satellite();
+  satelliteEsri = L.Satellite({
+    'provider': L.Satellite.ESRI
+  });
+
   street = L.openStreetMap();
 
   terrain = L.Terrain();
@@ -47,7 +52,8 @@ var initialize = function () {
     'GrayscaleCartodb': grayscaleCartodb,
 
     'Satellite': satellite,
-    
+    'satelliteEsri': satelliteEsri,
+
     'Street': street,
 
     'Terrain': terrain,
