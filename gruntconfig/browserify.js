@@ -27,7 +27,8 @@ var EXPORTS = [
     'leaflet/layer/OpenAerialMap',
     'leaflet/layer/OpenStreetMap',
     'leaflet/layer/TectonicPlates',
-    'leaflet/layer/UsFault'
+    'leaflet/layer/UsFault',
+    'leaflet/layer/UsHazard'
   ].map(function (path) {
     return './' + config.src + '/' + path + '.js:' + path;
   })

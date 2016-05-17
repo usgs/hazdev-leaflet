@@ -28,6 +28,7 @@ require('leaflet/layer/OpenAerialMap');
 require('leaflet/layer/OpenStreetMap');
 require('leaflet/layer/TectonicPlates');
 require('leaflet/layer/UsFault');
+require('leaflet/layer/UsHazard');
 
 
 module.exports = L;
