@@ -2,13 +2,13 @@
 'use strict';
 
 
-var _PLATES_URL = 'http://earthquake.usgs.gov/basemap/tiles/ushaz';
+var _TILE_URL = 'http://earthquake.usgs.gov/basemap/tiles/ushaz';
 
 
 var UsHazard = function (options) {
   options = options || {};
 
-  return L.tileLayer(_PLATES_URL + '/{z}/{x}/{y}.png', options);
+  return L.tileLayer(_TILE_URL + '/{z}/{x}/{y}.png', options);
 };
 
 
