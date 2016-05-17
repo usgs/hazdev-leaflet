@@ -2,31 +2,32 @@
 'use strict';
 
 
-// this file defines the factory "L.esriGrayscale()"
-require('leaflet/layer/EsriGrayscale');
 // this file defines the factory "L.esriTerrain()"
 require('leaflet/layer/EsriTerrain');
+
+require('leaflet/layer/GrayscaleLayer');
 // this file defines the factory "L.openAerialMap()"
 require('leaflet/layer/OpenAerialMap');
 // this file defines the factory "L.openStreetMap()"
 require('leaflet/layer/OpenStreetMap');
-// this file defines the factory "L.CartoDBGrayscale()"
-require('leaflet/layer/CartoDBGrayScale');
 
 // Custom layers control...
 require('leaflet/control/HazDevLayers');
 
 
 var initialize = function () {
-  var cartodb,
-      grayscale,
+  var grayscale,
+      grayscaleCartodb,
       map,
       satellite,
       street,
       terrain;
 
-  cartodb = L.cartodb();
-  grayscale = L.esriGrayscale();
+
+  grayscale = L.GrayscaleLayer();
+  grayscaleCartodb = L.GrayscaleLayer({
+    'provider': L.GrayscaleLayer.CARTODB
+  });
   satellite = L.openAerialMap();
   street = L.openStreetMap();
   terrain = L.esriTerrain();
@@ -39,10 +40,10 @@ var initialize = function () {
 
   L.control.hazDevLayers({
     'Grayscale': grayscale,
+    'GrayscaleCartodb': grayscaleCartodb,
     'Satellite': satellite,
     'Street': street,
-    'Terrain': terrain,
-    'CartoDB GrayScale' : cartodb
+    'Terrain': terrain
   }).addTo(map);
 };
 
