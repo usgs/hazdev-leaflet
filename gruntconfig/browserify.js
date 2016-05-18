@@ -27,13 +27,9 @@ var EXPORTS = [
     'leaflet/layer/Satellite',
     'leaflet/layer/Street',
     'leaflet/layer/TectonicPlates',
-<<<<<<< 9ec8e5a92b019c99b599cc81231e68533999901f
+    'leaflet/layer/Terrain',
     'leaflet/layer/UsFault',
     'leaflet/layer/UsHazard'
-=======
-    'leaflet/layer/Terrain',
-    'leaflet/layer/UsFault'
->>>>>>> changed name of gray scale layer and added to terrain layers
   ].map(function (path) {
     return './' + config.src + '/' + path + '.js:' + path;
   })
