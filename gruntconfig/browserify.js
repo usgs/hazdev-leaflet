@@ -18,13 +18,14 @@ var EXPORTS = [
 
     'leaflet/layer/ArcTile',
     'leaflet/layer/AsynchronousGeoJson',
+    'leaflet/layer/Dark',
     'leaflet/layer/Grayscale',
     'leaflet/layer/HazardFault',
     'leaflet/layer/HazardFault2008',
     'leaflet/layer/HazardFault2014',
     'leaflet/layer/MouseOverLayer',
     'leaflet/layer/Satellite',
-    'leaflet/layer/OpenStreetMap',
+    'leaflet/layer/Street',
     'leaflet/layer/TectonicPlates',
 <<<<<<< 9ec8e5a92b019c99b599cc81231e68533999901f
     'leaflet/layer/UsFault',
