@@ -18,15 +18,16 @@ var EXPORTS = [
 
     'leaflet/layer/ArcTile',
     'leaflet/layer/AsynchronousGeoJson',
-    'leaflet/layer/EsriGrayscale',
-    'leaflet/layer/EsriTerrain',
+    'leaflet/layer/Dark',
+    'leaflet/layer/Grayscale',
     'leaflet/layer/HazardFault',
     'leaflet/layer/HazardFault2008',
     'leaflet/layer/HazardFault2014',
     'leaflet/layer/MouseOverLayer',
-    'leaflet/layer/OpenAerialMap',
-    'leaflet/layer/OpenStreetMap',
+    'leaflet/layer/Satellite',
+    'leaflet/layer/Street',
     'leaflet/layer/TectonicPlates',
+    'leaflet/layer/Terrain',
     'leaflet/layer/UsFault',
     'leaflet/layer/UsHazard'
   ].map(function (path) {
