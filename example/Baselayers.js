@@ -1,12 +1,13 @@
 /* global L */
 'use strict';
 
-require('leaflet/layer/Dark');
-require('leaflet/layer/Grayscale');
-require('leaflet/control/HazDevLayers');
-require('leaflet/layer/Satellite');
-require('leaflet/layer/Street');
-require('leaflet/layer/Terrain');
+var Dark = require('leaflet/layer/Dark'),
+    Grayscale = require('leaflet/layer/Grayscale'),
+    HazDevLayers = require('leaflet/control/HazDevLayers'),
+    Satellite = require('leaflet/layer/Satellite'),
+    Street = require('leaflet/layer/Street'),
+    Terrain = require('leaflet/layer/Terrain');
+
 
 
 var initialize = function () {
@@ -15,56 +16,58 @@ var initialize = function () {
       grayscaleCartodb,
       map,
       satellite,
-      satelliteEsri,
+      satelliteMapquest,
       street,
-      streetEsri,
+      streetMapquest,
       terrain,
-      terrainEsriTopo;
+      terrainNatgeo;
 
-  dark = L.Dark();
+  dark = Dark();
 
-  grayscale = L.Grayscale();
-  grayscaleCartodb = L.Grayscale({
-    'provider': L.Grayscale.CARTODB
+  grayscale = Grayscale();
+  grayscaleCartodb = Grayscale({
+    'provider': Grayscale.CARTODB
   });
 
-  satellite = L.Satellite();
-  satelliteEsri = L.Satellite({
-    'provider': L.Satellite.ESRI
+  satellite = Satellite();
+  satelliteMapquest = Satellite({
+    'provider': Satellite.MAPQUEST
   });
 
-  street = L.Street();
-  streetEsri = L.Street({
-    'provider': L.Street.ESRI
+  street = Street();
+  streetMapquest = Street({
+    'provider': Street.MAPQUEST
   });
 
-  terrain = L.Terrain();
-  terrainEsriTopo = L.Terrain({
-    'provider': L.Terrain.ESRI_TOPO
+  terrain = Terrain();
+  terrainNatgeo = Terrain({
+    'provider': Terrain.NATGEO
   });
 
   map = L.map(document.querySelector('.map'), {
     center: [40, -105],
     zoom: 3,
-    layers: [terrain]
   });
 
-  L.control.hazDevLayers({
+  HazDevLayers({
     'Grayscale': grayscale,
-    'GrayscaleCartodb': grayscaleCartodb,
+    'Grayscale Cartodb': grayscaleCartodb,
 
     'Satellite': satellite,
-    'SatelliteEsri': satelliteEsri,
+    'Satellite Mapquest': satelliteMapquest,
 
     'Street': street,
-    'StreetEsri': streetEsri,
+    'Street Mapquest': streetMapquest,
 
     'Terrain': terrain,
-    'TerrainEsriTopo': terrainEsriTopo,
+    'Terrain NatGeo': terrainNatgeo,
 
     'Dark': dark
   }).addTo(map);
+
+  map.addLayer(terrain);
 };
 
 
 initialize();
+  

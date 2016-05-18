@@ -1,16 +1,34 @@
-/* global L */
 'use strict';
 
 
-var Util = require('util/Util');
+var TileProvider = require('leaflet/layer/TileProvider'),
+    Util = require('util/Util');
 
-var _ESRI = 'esri',
-    _MAP_QUEST = 'map_quest';
+var _DEFAULTS,
+    _ESRI,
+    _MAPQUEST,
+    _PROVIDER_INFO;
 
-var _PROVIDER_INFO = {
+_ESRI = 'esri';
+_MAPQUEST = 'mapquest';
+_PROVIDER_INFO = {};
+
+_DEFAULTS = {
+  provider: _ESRI
 };
 
-_PROVIDER_INFO[_MAP_QUEST] = {
+_PROVIDER_INFO[_ESRI] = {
+  url: '//{s}.arcgisonline.com/ArcGIS/rest/services/' +
+      'World_Imagery/MapServer/tile/{z}/{y}/{x}',
+  options: {
+    subdomains: ['server', 'services'],
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, ' +
+        'USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the ' +
+        'GIS User Community'
+  }
+};
+
+_PROVIDER_INFO[_MAPQUEST] = {
   url: 'http://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg',
   options: {
     subdomains: '1234',
@@ -24,46 +42,27 @@ _PROVIDER_INFO[_MAP_QUEST] = {
   }
 };
 
-_PROVIDER_INFO[_ESRI] = {
-  url: 'https://server.arcgisonline.com/ArcGIS/rest/services/' +
-      'World_Imagery/MapServer/tile/{z}/{y}/{x}',
-  options: {
-    subdomains: '',
-    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, ' +
-        'USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the ' +
-        'GIS User Community'
-  }
-};
-
-
-var _DEFAULTS = {
-  provider: _MAP_QUEST
-};
-
 
 /**
 * Factory for Satellite base layer.
 */
 var Satellite = function (options) {
-  var layer,
-      layerOptions,
-      provider;
-
-  options = Util.extend({}, _DEFAULTS, options);
-
-  provider = options.provider || {};
-  layer = _PROVIDER_INFO[provider];
-  layerOptions = Util.extend({}, layer.options, options);
-
-
-  return L.tileLayer(layer.url, layerOptions);
+  try {
+    return TileProvider.create(
+      _PROVIDER_INFO,
+      Util.extend({}, _DEFAULTS, options)
+    );
+  } catch (e) {
+    return TileProvider.create(
+      _PROVIDER_INFO,
+      _DEFAULTS
+    );
+  }
 };
 
 
 Satellite.ESRI = _ESRI;
-Satellite.CARTODB = _MAP_QUEST;
-
-L.Satellite = Satellite;
+Satellite.MAPQUEST = _MAPQUEST;
 
 
 module.exports = Satellite;

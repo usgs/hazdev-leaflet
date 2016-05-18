@@ -28,6 +28,7 @@ var EXPORTS = [
     'leaflet/layer/Street',
     'leaflet/layer/TectonicPlates',
     'leaflet/layer/Terrain',
+    'leaflet/layer/TileProvider',
     'leaflet/layer/UsFault',
     'leaflet/layer/UsHazard'
   ].map(function (path) {

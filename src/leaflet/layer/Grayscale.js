@@ -1,23 +1,22 @@
-/* global L */
 'use strict';
 
 
-var Util = require('util/Util');
+var TileProvider = require('leaflet/layer/TileProvider'),
+    Util = require('util/Util');
 
-var _CARTODB = 'cartodb',
-    _ESRI = 'esri';
 
-var _PROVIDER_INFO = {
-};
+var _CARTODB,
+    _DEFAULTS,
+    _ESRI,
+    _PROVIDER_INFO;
 
-_PROVIDER_INFO[_ESRI] = {
-  url: 'http://{s}.arcgisonline.com/ArcGIS/rest/services/' +
-      'Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}.jpg',
-  options: {
-    subdomains: ['server', 'services'],
-    attribution: 'Sources: Esri, DeLorme, HERE, MapmyIndia,  &copy; ' +
-        'OpenStreetMap contributors, and the GIS community'
-  }
+
+_CARTODB = 'cartodb';
+_ESRI = 'esri';
+_PROVIDER_INFO = {};
+
+_DEFAULTS = {
+  provider: _ESRI
 };
 
 _PROVIDER_INFO[_CARTODB] = {
@@ -30,9 +29,14 @@ _PROVIDER_INFO[_CARTODB] = {
   }
 };
 
-
-var _DEFAULTS = {
-  provider: _ESRI
+_PROVIDER_INFO[_ESRI] = {
+  url: '//{s}.arcgisonline.com/ArcGIS/rest/services/' +
+      'Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}.jpg',
+  options: {
+    subdomains: ['server', 'services'],
+    attribution: 'Sources: Esri, DeLorme, HERE, MapmyIndia,  &copy; ' +
+        'OpenStreetMap contributors, and the GIS community'
+  }
 };
 
 
@@ -40,25 +44,22 @@ var _DEFAULTS = {
 * Factory for Grayscale base layer.
 */
 var Grayscale = function (options) {
-  var layer,
-      layerOptions,
-      provider;
-
-  options = Util.extend({}, _DEFAULTS, options);
-
-  provider = options.provider || {};
-  layer = _PROVIDER_INFO[provider];
-  layerOptions = Util.extend({}, layer.options, options);
-
-
-  return L.tileLayer(layer.url, layerOptions);
+  try {
+    return TileProvider.create(
+      _PROVIDER_INFO,
+      Util.extend({}, _DEFAULTS, options)
+    );
+  } catch (e) {
+    return TileProvider.create(
+      _PROVIDER_INFO,
+      _DEFAULTS
+    );
+  }
 };
 
 
-Grayscale.ESRI = _ESRI;
 Grayscale.CARTODB = _CARTODB;
-
-L.Grayscale = Grayscale;
+Grayscale.ESRI = _ESRI;
 
 
 module.exports = Grayscale;

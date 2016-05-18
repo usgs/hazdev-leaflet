@@ -1,16 +1,37 @@
-/* global L */
 'use strict';
 
 
-var Util = require('util/Util');
+var TileProvider = require('leaflet/layer/TileProvider'),
+    Util = require('util/Util');
 
-var _ESRI = 'esri_street',
-    _MAP_QUEST = 'open_street_map';
 
-var _PROVIDER_INFO = {
+var _DEFAULTS,
+    _ESRI,
+    _MAPQUEST,
+    _PROVIDER_INFO;
+
+
+_ESRI = 'esri';
+_MAPQUEST = 'mapquest';
+_PROVIDER_INFO = {};
+
+_DEFAULTS = {
+  provider: _ESRI
 };
 
-_PROVIDER_INFO[_MAP_QUEST] = {
+_PROVIDER_INFO[_ESRI] = {
+  url: '//{s}.arcgisonline.com/ArcGIS/rest/services/' +
+      'World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+  options: {
+    subdomains: ['server', 'services'],
+    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, ' +
+        'Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, ' +
+        'Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the ' +
+        'GIS User Community'
+  }
+};
+
+_PROVIDER_INFO[_MAPQUEST] = {
   url: 'http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg',
   options: {
     subdomains: '1234',
@@ -24,46 +45,27 @@ _PROVIDER_INFO[_MAP_QUEST] = {
   }
 };
 
-_PROVIDER_INFO[_ESRI] = {
-  url: 'https://{s}.arcgisonline.com/ArcGIS/rest/services/' +
-      'World_Street_Map/MapServer/tile/{z}/{y}/{x}',
-  options: {
-    subdomains: ['server', 'services'],
-    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, ' +
-      'Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance ' +
-      'Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User ' +
-      'Community'
-  }
-};
-
-var _DEFAULTS = {
-  provider: _MAP_QUEST
-};
-
 
 /**
 * Factory for Street base layer.
 */
 var Street = function (options) {
-  var layer,
-      layerOptions,
-      provider;
-
-  options = Util.extend({}, _DEFAULTS, options);
-
-  provider = options.provider || {};
-  layer = _PROVIDER_INFO[provider];
-  layerOptions = Util.extend({}, layer.options, options);
-
-
-  return L.tileLayer(layer.url, layerOptions);
+  try {
+    return TileProvider.create(
+      _PROVIDER_INFO,
+      Util.extend({}, _DEFAULTS, options)
+    );
+  } catch (e) {
+    return TileProvider.create(
+      _PROVIDER_INFO,
+      _DEFAULTS
+    );
+  }
 };
 
 
 Street.ESRI = _ESRI;
-Street.MAP_QUEST = _MAP_QUEST;
-
-L.Street = Street;
+Street.MAPQUEST = _MAPQUEST;
 
 
 module.exports = Street;
