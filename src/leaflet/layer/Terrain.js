@@ -4,13 +4,13 @@
 
 var Util = require('util/Util');
 
-var _NATGEO_WORLD_MAP = 'natGeo_world_map',
-    _WORLD_TOPO_MAP = 'world_topo_map';
+var _NATGEO_WORLD = 'natGeo_world_map',
+    _ESRI_TOPO = 'world_topo_map';
 
 var _PROVIDER_INFO = {
 };
 
-_PROVIDER_INFO[_NATGEO_WORLD_MAP] = {
+_PROVIDER_INFO[_NATGEO_WORLD] = {
   url: 'http://{s}.arcgisonline.com/arcgis/rest/services/' +
       'NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}',
   options: {
@@ -22,7 +22,7 @@ _PROVIDER_INFO[_NATGEO_WORLD_MAP] = {
   }
 };
 
-_PROVIDER_INFO[_WORLD_TOPO_MAP] = {
+_PROVIDER_INFO[_ESRI_TOPO] = {
   url: 'https://server.arcgisonline.com/ArcGIS/rest/services/' +
       'World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
   options: {
@@ -35,8 +35,9 @@ _PROVIDER_INFO[_WORLD_TOPO_MAP] = {
 };
 
 var _DEFAULTS = {
-  provider: _NATGEO_WORLD_MAP
+  provider: _NATGEO_WORLD
 };
+
 
 /**
  * Factory for Terrain base layer.
@@ -56,8 +57,8 @@ var Terrain = function (options) {
   return L.tileLayer(layer.url, layerOptions);
 };
 
-Terrain.NATGEO_WORLD_MAP = _NATGEO_WORLD_MAP;
-Terrain.WORLD_TOPO_MAP = _WORLD_TOPO_MAP;
+Terrain.NATGEO_WORLD = _NATGEO_WORLD;
+Terrain.ESRI_TOPO = _ESRI_TOPO;
 
 L.Terrain = Terrain;
 
