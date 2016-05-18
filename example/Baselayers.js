@@ -1,28 +1,27 @@
 /* global L */
 'use strict';
 
-
+require('leaflet/layer/Dark');
 require('leaflet/layer/Grayscale');
-// this file defines the factory "L.openAerialMap()"
-require('leaflet/layer/Satellite');
-// this file defines the factory "L.openStreetMap()"
-require('leaflet/layer/OpenStreetMap');
-// this file defines the factory "L.Terrain()"
-require('leaflet/layer/Terrain');
-// Custom layers control...
 require('leaflet/control/HazDevLayers');
+require('leaflet/layer/Satellite');
+require('leaflet/layer/Street');
+require('leaflet/layer/Terrain');
 
 
 var initialize = function () {
-  var grayscale,
+  var dark,
+      grayscale,
       grayscaleCartodb,
       map,
       satellite,
       satelliteEsri,
       street,
+      streetEsri,
       terrain,
-      terrainWorldTopoMap;
+      terrainEsriTopo;
 
+  dark = L.Dark();
 
   grayscale = L.Grayscale();
   grayscaleCartodb = L.Grayscale({
@@ -34,11 +33,14 @@ var initialize = function () {
     'provider': L.Satellite.ESRI
   });
 
-  street = L.openStreetMap();
+  street = L.Street();
+  streetEsri = L.Street({
+    'provider': L.Street.ESRI
+  });
 
   terrain = L.Terrain();
-  terrainWorldTopoMap = L.Terrain({
-    'provider': L.Terrain.WORLD_TOPO_MAP
+  terrainEsriTopo = L.Terrain({
+    'provider': L.Terrain.ESRI_TOPO
   });
 
   map = L.map(document.querySelector('.map'), {
@@ -52,12 +54,15 @@ var initialize = function () {
     'GrayscaleCartodb': grayscaleCartodb,
 
     'Satellite': satellite,
-    'satelliteEsri': satelliteEsri,
+    'SatelliteEsri': satelliteEsri,
 
     'Street': street,
+    'StreetEsri': streetEsri,
 
     'Terrain': terrain,
-    'TerrainWorldTopoMap': terrainWorldTopoMap
+    'TerrainEsriTopo': terrainEsriTopo,
+
+    'Dark': dark
   }).addTo(map);
 };
 
