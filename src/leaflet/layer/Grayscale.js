@@ -11,7 +11,7 @@ var _PROVIDER_INFO = {
 };
 
 _PROVIDER_INFO[_ESRI] = {
-  url: 'http://{s}.arcgisonline.com/ArcGIS/rest/services/' +
+  url: '//{s}.arcgisonline.com/ArcGIS/rest/services/' +
       'Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}.jpg',
   options: {
     subdomains: ['server', 'services'],

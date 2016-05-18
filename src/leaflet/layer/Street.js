@@ -25,7 +25,7 @@ _PROVIDER_INFO[_MAP_QUEST] = {
 };
 
 _PROVIDER_INFO[_ESRI] = {
-  url: 'https://{s}.arcgisonline.com/ArcGIS/rest/services/' +
+  url: '//{s}.arcgisonline.com/ArcGIS/rest/services/' +
       'World_Street_Map/MapServer/tile/{z}/{y}/{x}',
   options: {
     subdomains: ['server', 'services'],

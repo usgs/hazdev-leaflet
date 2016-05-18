@@ -11,7 +11,7 @@ var _PROVIDER_INFO = {
 };
 
 _PROVIDER_INFO[_NATGEO_WORLD] = {
-  url: 'http://{s}.arcgisonline.com/arcgis/rest/services/' +
+  url: '//{s}.arcgisonline.com/arcgis/rest/services/' +
       'NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}',
   options: {
     subdomains: ['server', 'services'],
@@ -23,7 +23,7 @@ _PROVIDER_INFO[_NATGEO_WORLD] = {
 };
 
 _PROVIDER_INFO[_ESRI_TOPO] = {
-  url: 'https://server.arcgisonline.com/ArcGIS/rest/services/' +
+  url: '//server.arcgisonline.com/ArcGIS/rest/services/' +
       'World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
   options: {
     subdomains: ['server', 'services'],
