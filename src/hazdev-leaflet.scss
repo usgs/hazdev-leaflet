@@ -1,5 +1,7 @@
 
-/* base control styles (should be first so specific style override) */
+@import 'leaflet/_Map.scss';
+
+/* base control styles (first control style so specific style override) */
 @import 'leaflet/control/_Control.scss';
 
 /* specific control styles */
