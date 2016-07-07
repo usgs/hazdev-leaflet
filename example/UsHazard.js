@@ -5,7 +5,7 @@
 // this file defines the factory "L.usHazard"
 require('leaflet/layer/UsHazard');
 // this file defines the factory "L.esriTerrain()"
-require('leaflet/layer/EsriTerrain');
+require('leaflet/layer/Terrain');
 
 
 var initialize = function () {

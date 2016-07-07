@@ -1,0 +1,27 @@
+/* global L */
+'use strict';
+
+var Util = require('util/Util');
+
+
+var _HISTORIC_SEISMICITY_URL = 'http://earthquake.usgs.gov/arcgis/rest' +
+    '/services/eq/catalog_2015/MapServer/tile/{z}/{y}/{x}';
+
+
+/**
+ * Historic seismicity layer.
+ *
+ *
+ * @param options {Object}
+ *     Any options that could be provided to an L.tileLayer
+ */
+var HistoricSeismicity = function (options) {
+  options = Util.extend({
+    tileUrl: _HISTORIC_SEISMICITY_URL
+  }, options);
+
+  return L.tileLayer(options.tileUrl, options);
+};
+
+
+module.exports = HistoricSeismicity;
