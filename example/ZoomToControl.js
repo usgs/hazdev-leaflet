@@ -2,15 +2,14 @@
 'use strict';
 
 
-var EsriTerrain = require('leaflet/layer/EsriTerrain');
-
-require('leaflet/control/ZoomToControl');
+var Terrain = require('leaflet/layer/Terrain'),
+    ZoomToControl = require('leaflet/control/ZoomToControl');
 
 
 var initialize = function () {
   var locations,
       map,
-      natgeo,
+      terrain,
       zoomTo;
 
   locations = [
@@ -58,10 +57,10 @@ var initialize = function () {
       zoomControl: false
     });
 
-  zoomTo = L.control.zoomToControl({locations:locations});
-  natgeo = EsriTerrain();
+  terrain = Terrain();
+  zoomTo = ZoomToControl({locations:locations});
 
-  map.addLayer(natgeo);
+  map.addLayer(terrain);
   map.addControl(zoomTo);
 };
 

@@ -1,13 +1,13 @@
 /* global L */
 'use strict';
 
+
 var Dark = require('leaflet/layer/Dark'),
     Grayscale = require('leaflet/layer/Grayscale'),
     HazDevLayers = require('leaflet/control/HazDevLayers'),
     Satellite = require('leaflet/layer/Satellite'),
     Street = require('leaflet/layer/Street'),
     Terrain = require('leaflet/layer/Terrain');
-
 
 
 var initialize = function () {

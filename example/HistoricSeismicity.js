@@ -3,13 +3,13 @@
 
 
 var HistoricSeismicity = require('leaflet/layer/HistoricSeismicity'),
-    EsriTerrain = require('leaflet/layer/Terrain');
+    Terrain = require('leaflet/layer/Terrain');
 
 
 var map = L.map(document.querySelector('.map'), {
   center: [40, -105],
   zoom: 3,
-  layers: [EsriTerrain()]
+  layers: [Terrain()]
 });
 
 HistoricSeismicity().addTo(map);

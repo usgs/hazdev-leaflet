@@ -2,20 +2,18 @@
 'use strict';
 
 
-// this file defines the factory "L.hazardFault2014"
-require('leaflet/layer/HazardFault2014');
-// this file defines the factory "L.esriTerrain()"
-require('leaflet/layer/EsriTerrain');
+var HazardFault2014 = require('leaflet/layer/HazardFault2014'),
+    Terrain = require('leaflet/layer/Terrain');
 
 
 var initialize = function () {
   var map = L.map(document.querySelector('.map'), {
     center: [40, -105],
     zoom: 3,
-    layers: [L.esriTerrain()]
+    layers: [Terrain()]
   });
 
-  L.hazardFault2014({
+  HazardFault2014({
     clickable: true
   }).addTo(map);
 };

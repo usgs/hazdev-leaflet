@@ -2,10 +2,8 @@
 'use strict';
 
 
-// this file defines the factory "L.control.fullscreen()"
-require('leaflet/control/Fullscreen');
-// this file defines the factory "L.esriTerrain()"
-require('leaflet/layer/EsriTerrain');
+var Fullscreen = require('leaflet/control/Fullscreen'),
+    Terrain = require('leaflet/layer/Terrain');
 
 
 var initialize = function () {
@@ -14,10 +12,10 @@ var initialize = function () {
   map = L.map(document.querySelector('.map'), {
     center: [40, -105],
     zoom: 3,
-    layers: [L.esriTerrain()]
+    layers: [Terrain()]
   });
 
-  L.control.fullscreen().addTo(map);
+  Fullscreen().addTo(map);
 };
 
 
