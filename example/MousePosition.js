@@ -2,10 +2,8 @@
 'use strict';
 
 
-// this file defines the "L.control.mousePosition()" factory.
-require('leaflet/control/MousePosition');
-// this file defines the factory "L.esriTerrain()"
-require('leaflet/layer/EsriTerrain');
+var MousePosition = require('leaflet/control/MousePosition'),
+    Terrain = require('leaflet/layer/Terrain');
 
 
 var initialize = function () {
@@ -14,10 +12,10 @@ var initialize = function () {
   map = L.map(document.querySelector('.map'), {
     center: [40, -105],
     zoom: 3,
-    layers: [L.esriTerrain()]
+    layers: [Terrain()]
   });
 
-  L.control.mousePosition().addTo(map);
+  MousePosition().addTo(map);
 };
 
 

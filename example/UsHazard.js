@@ -2,20 +2,18 @@
 'use strict';
 
 
-// this file defines the factory "L.usHazard"
-require('leaflet/layer/UsHazard');
-// this file defines the factory "L.esriTerrain()"
-require('leaflet/layer/Terrain');
+var UsHazard = require('leaflet/layer/UsHazard'),
+    Terrain = require('leaflet/layer/Terrain');
 
 
 var initialize = function () {
   var map = L.map(document.querySelector('.map'), {
     center: [40, -105],
     zoom: 3,
-    layers: [L.esriTerrain()]
+    layers: [Terrain()]
   });
 
-  L.usHazard({
+  UsHazard({
     clickable: true
   }).addTo(map);
 };

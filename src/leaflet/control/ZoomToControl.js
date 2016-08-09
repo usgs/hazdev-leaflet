@@ -47,23 +47,6 @@ var ZoomToControl = L.Control.extend({
 
 
   /**
-   * On Add Pointer Down Event
-   *    Disable propagation for ie11/microsoft touch
-   *
-   * @params e {event}
-   *
-   * @notes Changed from an inline function, to a seperate function for
-   *    removeListener to work.
-   */
-  _onAddPointerDownEvent: function (e) {
-    var evt;
-
-    evt = e ? e : window.event;
-    evt.returnValue = false;
-    evt.cancelBubble = true;
-  },
-
-  /**
    * Set the zoom extents
    *    triggered by a change event.
    *
@@ -137,8 +120,7 @@ var ZoomToControl = L.Control.extend({
 
     // Disable propagation for ie11/microsoft touch
     L.DomEvent
-      .on(select, 'change', this._setZoom, this)
-      .on(select, 'pointerdown', this._onAddPointerDownEvent, this);
+      .on(select, 'change', this._setZoom, this);
 
     return container;
   },
@@ -153,8 +135,7 @@ var ZoomToControl = L.Control.extend({
     select = this._container.querySelector('.' + _CLASS_NAME + '-list');
 
     L.DomEvent
-      .off(select, 'change', this._setZoom)
-      .off(select, 'pointerdown', this._onAddPointerDownEvent);
+      .off(select, 'change', this._setZoom);
 
     this._container = null;
     this._map = null;
