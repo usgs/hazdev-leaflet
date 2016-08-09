@@ -59,8 +59,6 @@ var ZoomToControl = L.Control.extend({
         locations,
         value;
 
-    console.log('setZoom');
-
     locations = (this.options || {}).locations || [];
     len = locations.length;
     e = Util.getEvent(e);
