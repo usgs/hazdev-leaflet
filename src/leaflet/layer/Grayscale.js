@@ -20,7 +20,7 @@ _DEFAULTS = {
 };
 
 _PROVIDER_INFO[_CARTODB] = {
-  url: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+  url: 'https://cartobase-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
   options: {
     subdomains: ['server', 'services'],
     attribution: '<a href="https://www.openstreetmap.org/copyright">' +
@@ -30,7 +30,7 @@ _PROVIDER_INFO[_CARTODB] = {
 };
 
 _PROVIDER_INFO[_ESRI] = {
-  url: '//{s}.arcgisonline.com/ArcGIS/rest/services/' +
+  url: 'https://{s}.arcgisonline.com/ArcGIS/rest/services/' +
       'Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}.jpg',
   options: {
     subdomains: ['server', 'services'],

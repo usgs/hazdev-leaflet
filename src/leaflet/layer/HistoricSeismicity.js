@@ -4,7 +4,7 @@
 var Util = require('util/Util');
 
 
-var _HISTORIC_SEISMICITY_URL = 'http://earthquake.usgs.gov/arcgis/rest' +
+var _HISTORIC_SEISMICITY_URL = 'https://earthquake.usgs.gov/arcgis/rest' +
     '/services/eq/catalog_2015/MapServer/tile/{z}/{y}/{x}';
 
 
