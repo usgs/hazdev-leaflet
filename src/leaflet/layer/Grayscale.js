@@ -24,7 +24,7 @@ _PROVIDER_INFO[_CARTODB] = {
   options: {
     subdomains: ['server', 'services'],
     attribution: '<a href="https://www.openstreetmap.org/copyright">' +
-        'OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">' +
+        'OpenStreetMap</a> &copy; <a href="https://cartodb.com/attributions">' +
         'CartoDB</a>'
   }
 };

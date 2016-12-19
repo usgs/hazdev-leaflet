@@ -22,7 +22,7 @@ _PROVIDER_INFO[_DARK] = {
   options: {
     subdomains: 'abcd',
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">' +
-        'OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">' +
+        'OpenStreetMap</a> &copy; <a href="https://cartodb.com/attributions">' +
         'CartoDB</a>'
   }
 };
