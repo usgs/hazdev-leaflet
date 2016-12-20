@@ -11,7 +11,7 @@ var HazardFault = require('leaflet/layer/HazardFault'),
  */
 var HazardFault2014 = function (options) {
   return new HazardFault(Util.extend({
-    url: 'http://earthquake.usgs.gov/arcgis/rest/services/haz/hazfaults2014'
+    url: 'https://earthquake.usgs.gov/arcgis/rest/services/haz/hazfaults2014'
   }, options));
 };
 
