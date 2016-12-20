@@ -6,7 +6,7 @@ var MouseOverLayer = require('leaflet/layer/MouseOverLayer'),
     Util = require('util/Util');
 
 
-var _FAULTS_URL = 'http://earthquake.usgs.gov/basemap/tiles/faults';
+var _FAULTS_URL = 'https://earthquake.usgs.gov/basemap/tiles/faults';
 
 
 var UsFault = function (options) {

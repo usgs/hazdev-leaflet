@@ -18,7 +18,7 @@ _DEFAULTS = {
 };
 
 _PROVIDER_INFO[_ESRI] = {
-  url: '//{s}.arcgisonline.com/ArcGIS/rest/services/' +
+  url: 'https://{s}.arcgisonline.com/ArcGIS/rest/services/' +
       'World_Imagery/MapServer/tile/{z}/{y}/{x}',
   options: {
     subdomains: ['server', 'services'],
@@ -33,9 +33,9 @@ _PROVIDER_INFO[_MAPQUEST] = {
   options: {
     subdomains: '1234',
     attribution: 'Data, imagery and map information provided by MapQuest,' +
-        ' <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>' +
+        ' <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' +
         ' and contributors,' +
-        ' <a href="http://wiki.openstreetmap.org/wiki/Legal_FAQ#3a.' +
+        ' <a href="https://wiki.openstreetmap.org/wiki/Legal_FAQ#3a.' +
         '_I_would_like_to_use_OpenStreetMap_maps.' +
         '_How_should_I_credit_you.3F">' +
         'ODbL</a>'

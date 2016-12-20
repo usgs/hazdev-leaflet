@@ -20,7 +20,7 @@ _DEFAULTS = {
 };
 
 _PROVIDER_INFO[_ESRI] = {
-  url: '//{s}.arcgisonline.com/ArcGIS/rest/services/' +
+  url: 'https://{s}.arcgisonline.com/ArcGIS/rest/services/' +
       'World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
   options: {
     subdomains: ['server', 'services'],
@@ -32,7 +32,7 @@ _PROVIDER_INFO[_ESRI] = {
 };
 
 _PROVIDER_INFO[_NATGEO] = {
-  url: '//{s}.arcgisonline.com/arcgis/rest/services/' +
+  url: 'https://{s}.arcgisonline.com/arcgis/rest/services/' +
       'NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}',
   options: {
     subdomains: ['server', 'services'],

@@ -2,7 +2,7 @@
 'use strict';
 
 
-var _TILE_URL = 'http://earthquake.usgs.gov/basemap/tiles/ushaz';
+var _TILE_URL = 'https://earthquake.usgs.gov/basemap/tiles/ushaz';
 
 
 var UsHazard = function (options) {
