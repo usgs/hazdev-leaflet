@@ -18,11 +18,11 @@ _DEFAULTS = {
 };
 
 _PROVIDER_INFO[_DARK] = {
-  url: 'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
+  url: 'https://cartobase-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png',
   options: {
     subdomains: 'abcd',
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">' +
-        'OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">' +
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">' +
+        'OpenStreetMap</a> &copy; <a href="https://cartodb.com/attributions">' +
         'CartoDB</a>'
   }
 };

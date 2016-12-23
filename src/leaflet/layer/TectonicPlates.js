@@ -2,7 +2,7 @@
 'use strict';
 
 
-var _PLATES_URL = 'http://earthquake.usgs.gov/basemap/tiles/plates';
+var _PLATES_URL = 'https://earthquake.usgs.gov/basemap/tiles/plates';
 
 
 var TectonicPlates = function (options) {
