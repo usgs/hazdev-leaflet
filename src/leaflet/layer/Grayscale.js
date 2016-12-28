@@ -20,9 +20,9 @@ _DEFAULTS = {
 };
 
 _PROVIDER_INFO[_CARTODB] = {
-  url: 'https://cartobase-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
+  url: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}@2x.png',
   options: {
-    subdomains: ['server', 'services'],
+    subdomains: 'abcd',
     attribution: '<a href="https://www.openstreetmap.org/copyright">' +
         'OpenStreetMap</a> &copy; <a href="https://cartodb.com/attributions">' +
         'CartoDB</a>'
