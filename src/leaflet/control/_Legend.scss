@@ -1,0 +1,44 @@
+.leaflet-control-legend {
+  padding: 0;
+}
+
+.leaflet-control-legend .leaflet-control-legend-toggle {
+  color: #666;
+  font-size: 20px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  text-decoration: none;
+  width: 35px;
+}
+
+.leaflet-control-legend-expanded {
+  padding: 6px;
+  color: #333;
+  background: #fff;
+}
+
+.leaflet-control-legend-expanded .leaflet-control-legend-toggle,
+.leaflet-control-legend-images {
+  display: none;
+}
+
+.leaflet-control-legend-expanded .leaflet-control-legend-images {
+  display: block;
+  max-width: 100%;
+  position: relative;
+}
+
+.leaflet-control-legend-images img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.leaflet-control-legend-images .title {
+  display: block;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 1em 0;
+  text-align: center;
+}

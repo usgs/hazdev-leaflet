@@ -13,6 +13,7 @@ var EXPORTS = [
 
     'leaflet/control/Fullscreen',
     'leaflet/control/HazDevLayers',
+    'leaflet/control/Legend',
     'leaflet/control/MousePosition',
     'leaflet/control/ZoomToControl',
 
