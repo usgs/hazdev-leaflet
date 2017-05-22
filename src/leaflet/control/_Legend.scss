@@ -19,7 +19,8 @@
 }
 
 .leaflet-control-legend-expanded .leaflet-control-legend-toggle,
-.leaflet-control-legend-images {
+.leaflet-control-legend-images,
+.leaflet-control-legend-close  {
   display: none;
 }
 
@@ -41,4 +42,27 @@
   font-weight: bold;
   margin: 1em 0;
   text-align: center;
+}
+
+.leaflet-control-legend-expanded .leaflet-control-legend-close {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  color: #666;
+  display: block;
+  margin: 0;
+  padding: 0.5em;
+  position: absolute;
+  right: -6px;
+  top: -6px;
+
+  &:hover {
+    color: #333;
+  }
+
+  & .material-icons {
+    font-size: 16px;
+  }
+
 }

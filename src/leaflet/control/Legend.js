@@ -109,6 +109,7 @@ var Legend = L.Control.extend({
     // build control
     this._container.appendChild(this._link);
     this._container.appendChild(this._legends);
+    this._container.appendChild(this._closeButton);
 
     // add legends
     this._legends.appendChild(this._getLegends());
@@ -121,10 +122,14 @@ var Legend = L.Control.extend({
    *
    */
   _initLayout: function () {
-    var container,
+    var closeButton,
+        container,
         legends,
         link;
 
+    closeButton = this._closeButton =
+        L.DomUtil.create('button', 'leaflet-control-legend-close');
+    closeButton.innerHTML = '<i class="material-icons">&#xE5CD;</i>';
     container = this._container =
         L.DomUtil.create('div', 'leaflet-control-legend');
     legends = this._legends =
@@ -135,30 +140,23 @@ var Legend = L.Control.extend({
     link.title = 'Legend';
     link.innerHTML = '&#xE0DA;';
 
-    if (!L.Browser.touch) {
-      L.DomEvent
-        .disableClickPropagation(container)
-        .disableScrollPropagation(container);
-    } else {
-      L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
-    }
-
-    if (!L.Browser.android) {
-      L.DomEvent
-          .on(container, 'mouseover', this._expand, this)
-          .on(container, 'mouseout', this._collapse, this);
-    }
-
     if (L.Browser.touch) {
+      L.DomEvent
+          .on(container, 'click', L.DomEvent.stopPropagation);
       L.DomEvent
           .on(link, 'click', L.DomEvent.stop)
           .on(link, 'click', this._expand, this);
     } else {
-      L.DomEvent.on(link, 'focus', this._expand, this);
+      L.DomEvent
+        .disableClickPropagation(container)
+        .disableScrollPropagation(container);
+      L.DomEvent
+          .on(link, 'click', L.DomEvent.stop)
+          .on(link, 'click', this._expand, this);
+      L.DomEvent
+          .on(closeButton, 'click', this._collapse, this);
     }
 
-    this._map.on('click', this._collapse, this);
-    // TODO keyboard accessibility
   }
 });
 
