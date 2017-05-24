@@ -49,11 +49,9 @@ var initialize = function () {
   layersControl.addOverlay(plates, 'Tectonic Plates');
 
   // Add historic seismicity layer
-  seismicity = HistoricSeismicity({
-    legend: 'historic seismicity'
-  });
+  seismicity = HistoricSeismicity();
   layersControl.addOverlay(seismicity, 'Historic Seismicity');
-  //seismicity.addTo(map);
+  seismicity.addTo(map);
 
   // Add hazard faults layer
   hazFaults = HazardFault2014({
