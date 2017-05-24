@@ -15,6 +15,7 @@ var HazardFault2014 = require('leaflet/layer/HazardFault2014'),
 var initialize = function () {
   var hazFaults,
       layersControl,
+      legend,
       map,
       overlays,
       plates,
@@ -29,9 +30,17 @@ var initialize = function () {
     layers: [Terrain()]
   });
 
-  // Add layers
+  // Add layer control
   layersControl = HazDevLayers();
   map.addControl(layersControl);
+
+  // Add legend control
+  legend = Legend({
+    legends: [
+      'This is not associated with an overlay.'
+    ]
+  });
+  legend.addTo(map);
 
   // Add tectonic plates layer
   plates = TectonicPlates({
@@ -40,9 +49,11 @@ var initialize = function () {
   layersControl.addOverlay(plates, 'Tectonic Plates');
 
   // Add historic seismicity layer
-  seismicity = HistoricSeismicity();
+  seismicity = HistoricSeismicity({
+    legend: 'historic seismicity'
+  });
   layersControl.addOverlay(seismicity, 'Historic Seismicity');
-  seismicity.addTo(map);
+  //seismicity.addTo(map);
 
   // Add hazard faults layer
   hazFaults = HazardFault2014({
@@ -62,12 +73,6 @@ var initialize = function () {
   });
   layersControl.addOverlay(usHazards, 'US Hazards');
 
-  // Add legend
-  Legend({
-    legends: [
-      '<p>This is a baselayer legend</p>'
-    ]
-  }).addTo(map);
 
 };
 

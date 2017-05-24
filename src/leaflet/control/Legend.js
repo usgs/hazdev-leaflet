@@ -54,13 +54,13 @@ var Legend = L.Control.extend({
         legendItem,
         legends;
 
-    legends = this.options.legends;
-
-    if (!legends) {
-      return;
-    }
-
+    legends = this.options.legends || [];
     fragment = document.createDocumentFragment();
+
+    // display message if no legends exist
+    if (legends.length === 0) {
+      this._addMessage();
+    }
 
     for (i = 0; i < legends.length; i++) {
       legend = legends[i];
@@ -127,7 +127,7 @@ var Legend = L.Control.extend({
 
     closeButton = this._closeButton =
         L.DomUtil.create('button', 'leaflet-control-legend-close');
-    closeButton.innerHTML = '<i class="material-icons">&#xE5CD;</i>';
+    closeButton.innerHTML = 'close';
     container = this._container =
         L.DomUtil.create('div', 'leaflet-control-legend');
     legends = this._legends =
@@ -171,6 +171,8 @@ var Legend = L.Control.extend({
   addLegend: function (legend) {
     var legendItem;
 
+    this._removeMessage();
+
     legendItem = document.createElement('li');
 
     // Add a DOM Element or DOM String
@@ -204,8 +206,32 @@ var Legend = L.Control.extend({
 
       if (listItem.innerHTML === legend) {
         this._legends.removeChild(listItem);
-        return;
+        break;
       }
+    }
+
+    if (this._legends.querySelectorAll('li').length === 0) {
+      this._addMessage();
+    }
+  },
+
+  _addMessage: function () {
+    var message;
+
+    message = document.createElement('li');
+    message.className = 'no-legend';
+    message.innerHTML = 'Please select a layer.';
+
+    this._legends.appendChild(message);
+  },
+
+  _removeMessage: function () {
+    var message;
+
+    message = this._legends.querySelector('.no-legend');
+
+    if (message) {
+      this._legends.removeChild(message);
     }
   }
 
