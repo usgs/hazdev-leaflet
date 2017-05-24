@@ -3,6 +3,7 @@
 
 var Util = require('util/Util');
 
+require('leaflet/layer/LegendLayer');
 
 var _HISTORIC_SEISMICITY_URL = 'https://earthquake.usgs.gov/arcgis/rest' +
     '/services/eq/catalog_2015/MapServer/tile/{z}/{y}/{x}';
@@ -20,7 +21,7 @@ var HistoricSeismicity = function (options) {
     tileUrl: _HISTORIC_SEISMICITY_URL
   }, options);
 
-  return L.tileLayer(options.tileUrl, options);
+  return L.legendLayer(options.tileUrl, options);
 };
 
 

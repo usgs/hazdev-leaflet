@@ -26,6 +26,7 @@ L.MouseOverLayer = L.LayerGroup.extend({
     // Create the two layers
     this._tileLayer = new L.TileLayer(options.tileUrl, options.tileOpts);
     this._dataLayer = new UtfGrid(options.dataUrl, options.dataOpts);
+    this._legend = options.legend || null;
 
     if (typeof options.tiptext === 'string') {
       this._tiptext = options.tiptext;
@@ -38,10 +39,14 @@ L.MouseOverLayer = L.LayerGroup.extend({
     L.LayerGroup.prototype.initialize.call(this, []);
     this.addLayer(this._tileLayer);
     if (!Util.isMobile()) {
-  this.addLayer(this._dataLayer);
+      this.addLayer(this._dataLayer);
     }
 
     this._initialized = true;
+  },
+
+  getLegend: function () {
+    return this._legend;
   },
 
   // --------------------------------------------------

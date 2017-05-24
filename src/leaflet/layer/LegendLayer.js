@@ -27,9 +27,9 @@ var LegendLayer = L.TileLayer.extend({
 
 L.LegendLayer = LegendLayer;
 
-L.legendLayer = function (options) {
-  return new LegendLayer(options);
+L.legendLayer = function (url, options) {
+  return new L.LegendLayer(url, options);
 };
 
 
-module.exports = LegendLayer;
+module.exports = L.legendLayer;
