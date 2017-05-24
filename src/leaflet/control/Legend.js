@@ -20,13 +20,7 @@
 var Legend = L.Control.extend({
   options: {
     position: 'topright',
-    legends: [
-      {
-        title: 'Sample Title',
-        image: 'http://placehold.it/350x150',
-        el: '<p>This can be a DOM String or DOM Object</p>'
-      }
-    ]
+    legends: null
   },
 
   /**
@@ -55,44 +49,33 @@ var Legend = L.Control.extend({
    */
   _getLegends: function () {
     var fragment,
-        header,
         i,
-        img,
         legend,
-        legends,
-        wrapper;
+        legendItem,
+        legends;
+
+    legends = this.options.legends;
+
+    if (!legends) {
+      return;
+    }
 
     fragment = document.createDocumentFragment();
-    legends = this.options.legends;
 
     for (i = 0; i < legends.length; i++) {
       legend = legends[i];
-
-      // Add a title
-      if (legend.title) {
-        header = document.createElement('span');
-        header.classList.add('title');
-        header.innerHTML = legend.title;
-        fragment.appendChild(header);
-      }
-
-      // Add an image
-      if (legend.image) {
-        img = document.createElement('img');
-        img.src = legend.image;
-        fragment.appendChild(img);
-      }
+      legendItem = document.createElement('li');
 
       // Add a DOM Element or DOM String
-      if (legend.el) {
-        if (typeof legend.el === 'object') {
-          fragment.appendChild(legend.el);
-        } else if (typeof legend.el === 'string') {
-          wrapper = document.createElement('div');
-          wrapper.innerHTML = legend.el;
-          fragment.appendChild(wrapper);
-        }
+      if (legend && typeof legend === 'object') {
+        legendItem.appendChild(legend);
+      } else if (typeof legend === 'string') {
+        legendItem.innerHTML = legend;
+      } else {
+        throw new Error('No legend provided.');
       }
+
+      fragment.appendChild(legendItem);
     }
 
     return fragment;
@@ -102,7 +85,9 @@ var Legend = L.Control.extend({
    * onAdd Add the legend toggle and legends to the map
    *
    */
-  onAdd: function () {
+  onAdd: function (map) {
+    var legends;
+
     // bind 
     this._initLayout();
 
@@ -112,9 +97,22 @@ var Legend = L.Control.extend({
     this._container.appendChild(this._closeButton);
 
     // add legends
-    this._legends.appendChild(this._getLegends());
+    legends = this._getLegends();
+    if (legends) {
+      this._legends.appendChild(legends);
+    }
+
+    map
+        .on('layeradd', this._onLayerAdd, this)
+        .on('layerremove', this._onLayerRemove, this);
 
     return this._container;
+  },
+
+  onRemove: function (map) {
+    map
+      .off('layeradd', this._onLayerAdd, this)
+      .off('layerremove', this._onLayerRemove, this);
   },
 
   /**
@@ -133,7 +131,7 @@ var Legend = L.Control.extend({
     container = this._container =
         L.DomUtil.create('div', 'leaflet-control-legend');
     legends = this._legends =
-        L.DomUtil.create('div', 'leaflet-control-legend-images');
+        L.DomUtil.create('ul', 'leaflet-control-legend-list no-style');
     link = this._link =
         L.DomUtil.create('a', 'leaflet-control-legend-toggle material-icons');
     link.href = '#';
@@ -156,8 +154,61 @@ var Legend = L.Control.extend({
       L.DomEvent
           .on(closeButton, 'click', this._collapse, this);
     }
+  },
 
+  _onLayerAdd: function (e) {
+    if (e.layer.getLegend) {
+      this.addLegend(e.layer.getLegend());
+    }
+  },
+
+  _onLayerRemove: function (e) {
+    if (e.layer.getLegend) {
+      this.removeLegend(e.layer.getLegend());
+    }
+  },
+
+  addLegend: function (legend) {
+    var legendItem;
+
+    legendItem = document.createElement('li');
+
+    // Add a DOM Element or DOM String
+    if (legend && typeof legend === 'object') {
+      legendItem.appendChild(legend);
+    } else if (typeof legend === 'string') {
+      legendItem.innerHTML = legend;
+    } else {
+      throw new Error('No legend provided.');
+    }
+
+    this._legends.appendChild(legendItem);
+  },
+
+  removeLegend: function (legend) {
+    var i,
+        len,
+        listItem,
+        listItems;
+
+    listItems = [];
+    listItems = this._legends.querySelectorAll('li');
+
+    // if legend is a DOM element
+    if (typeof legend === 'object') {
+      legend = legend.innerHTML;
+    }
+
+    for (i = 0, len = listItems.length; i < len; i++) {
+      listItem = listItems[i];
+
+      if (listItem.innerHTML === legend) {
+        this._legends.removeChild(listItem);
+        return;
+      }
+    }
   }
+
 });
 
 

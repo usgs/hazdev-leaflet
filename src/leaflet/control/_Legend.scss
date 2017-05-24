@@ -19,29 +19,22 @@
 }
 
 .leaflet-control-legend-expanded .leaflet-control-legend-toggle,
-.leaflet-control-legend-images,
+.leaflet-control-legend-list,
 .leaflet-control-legend-close  {
   display: none;
 }
 
-.leaflet-control-legend-expanded .leaflet-control-legend-images {
+.leaflet-control-legend-expanded .leaflet-control-legend-list {
   display: block;
+  list-style: none;
   max-width: 100%;
   position: relative;
 }
 
-.leaflet-control-legend-images img {
+.leaflet-control-legend-list > li > img {
   display: block;
   margin: 0 auto;
   max-width: 100%;
-}
-
-.leaflet-control-legend-images .title {
-  display: block;
-  font-size: 15px;
-  font-weight: bold;
-  margin: 1em 0;
-  text-align: center;
 }
 
 .leaflet-control-legend-expanded .leaflet-control-legend-close {
