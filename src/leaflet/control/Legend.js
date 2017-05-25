@@ -47,7 +47,7 @@ var Legend = L.Control.extend({
    *         A fragment containing all of the legends to be added to the
    *         expanded Legend control.
    */
-  _getLegends: function () {
+  _addLegends: function () {
     var fragment,
         i,
         legend,
@@ -64,18 +64,7 @@ var Legend = L.Control.extend({
 
     for (i = 0; i < legends.length; i++) {
       legend = legends[i];
-      legendItem = document.createElement('li');
-
-      // Add a DOM Element or DOM String
-      if (legend && typeof legend === 'object') {
-        legendItem.appendChild(legend);
-      } else if (typeof legend === 'string') {
-        legendItem.innerHTML = legend;
-      } else {
-        throw new Error('No legend provided.');
-      }
-
-      fragment.appendChild(legendItem);
+      this.addLegend(legend);
     }
 
     return fragment;
@@ -97,10 +86,7 @@ var Legend = L.Control.extend({
     this._container.appendChild(this._closeButton);
 
     // add legends
-    legends = this._getLegends();
-    if (legends) {
-      this._legends.appendChild(legends);
-    }
+    this._addLegends();
 
     map
         .on('layeradd', this._onLayerAdd, this)
@@ -173,17 +159,20 @@ var Legend = L.Control.extend({
   addLegend: function (legend) {
     var legendItem;
 
+    // No legend to display
+    if (legend === null) {
+      return;
+    }
+
     this._removeMessage();
 
     legendItem = document.createElement('li');
 
     // Add a DOM Element or DOM String
-    if (legend && typeof legend === 'object') {
+    if (typeof legend === 'object') {
       legendItem.appendChild(legend);
     } else if (typeof legend === 'string') {
       legendItem.innerHTML = legend;
-    } else {
-      throw new Error('No legend provided.');
     }
 
     this._legends.appendChild(legendItem);
@@ -194,6 +183,11 @@ var Legend = L.Control.extend({
         len,
         listItem,
         listItems;
+
+    // no legend to display
+    if (legend === null) {
+      return;
+    }
 
     listItems = [];
     listItems = this._legends.querySelectorAll('li');
@@ -212,19 +206,19 @@ var Legend = L.Control.extend({
       }
     }
 
-    if (this._legends.querySelectorAll('li').length === 0) {
-      this._addMessage();
-    }
+    this._addMessage();
   },
 
   _addMessage: function () {
     var message;
 
-    message = document.createElement('li');
-    message.className = 'no-legend';
-    message.innerHTML = 'Please select a layer.';
+    if (this._legends.querySelectorAll('li').length === 0) {
+      message = document.createElement('li');
+      message.className = 'no-legend';
+      message.innerHTML = 'Please select a layer.';
 
-    this._legends.appendChild(message);
+      this._legends.appendChild(message);
+    }
   },
 
   _removeMessage: function () {
