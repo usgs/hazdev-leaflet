@@ -65,11 +65,15 @@
 .leaflet-control-legend.leaflet-control-legend-expanded {
   display: flex;
   flex-direction: column;
-  height: 80%;
+  max-height: 80%;
 }
 
 .leaflet-control-legend-expanded .leaflet-control-legend-list {
   overflow: scroll;
   margin: 0.5em 0;
   order: 2;
+}
+
+.leaflet-control-layers-expanded + .leaflet-control-legend-expanded {
+  max-height: 50%;
 }
