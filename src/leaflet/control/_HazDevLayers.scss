@@ -12,14 +12,16 @@
 .leaflet-control-layers-list {
   order: 2;
 }
-
+.leaflet-control-layers a.leaflet-control-layers-toggle,
 .leaflet-control-layers-toggle {
   height: $leaflet-control-size;
   width: $leaflet-control-size;
   background-size: 22px;
+  box-shadow: 0 1px 1px #333;
 }
 
-.leaflet-control-layers-expanded {
+.leaflet-control-layers.leaflet-control-layers-expanded {
+  box-shadow: 0 1px 1px #333;
   padding: 4px 6px;
 }
 
