@@ -144,6 +144,8 @@ var Legend = L.Control.extend({
       L.DomEvent
           .on(link, 'click', L.DomEvent.stop)
           .on(link, 'click', this._expand, this);
+      L.DomEvent
+          .on(closeButton, 'click', this._collapse, this);
     } else {
       L.DomEvent
         .disableClickPropagation(container)

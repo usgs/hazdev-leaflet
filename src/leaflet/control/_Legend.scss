@@ -40,14 +40,13 @@
     max-width: 100%;
   }
 }
-
+.leaflet-control-layers-expanded .leaflet-control-legend-close,
 .leaflet-control-legend-expanded .leaflet-control-legend-close {
   display: flex;
+  flex-shrink: 0;
   font-size: 12px;
   justify-content: center;
-  margin: 0;
   order: 1;
-  width: 100%;
 
   &:hover {
     color: #333;
