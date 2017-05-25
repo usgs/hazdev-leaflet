@@ -37,7 +37,7 @@ var initialize = function () {
   // Add legend control
   legend = Legend({
     legends: [
-      'This is not associated with an overlay.'
+      '<img src="https://earthquake.usgs.gov/hazards/qfaults/map/images/qfault-legend.png" title="Legend that cannot be hidden" />'
     ]
   });
   legend.addTo(map);

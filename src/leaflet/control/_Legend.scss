@@ -42,10 +42,11 @@
 }
 
 .leaflet-control-legend-expanded .leaflet-control-legend-close {
-  display: block;
+  display: flex;
   font-size: 12px;
-  margin: 1em 0 0 0;
-  padding: 0.5em;
+  justify-content: center;
+  margin: 0;
+  order: 1;
   width: 100%;
 
   &:hover {
@@ -56,4 +57,20 @@
     font-size: 16px;
   }
 
+}
+
+.leaflet-top.leaflet-right {
+  height: 100%;
+}
+
+.leaflet-control-legend.leaflet-control-legend-expanded {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+}
+
+.leaflet-control-legend-expanded .leaflet-control-legend-list {
+  overflow: scroll;
+  margin: 0.5em 0;
+  order: 2;
 }
