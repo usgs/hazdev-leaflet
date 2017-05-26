@@ -15,6 +15,10 @@ var Legend = L.Control.extend({
     legends: null
   },
 
+  /**
+   * Add an individual legend string or DOM element to the legend control.
+   *
+   */
   _addLegend: function (legend) {
     var legendItem;
 
@@ -37,6 +41,10 @@ var Legend = L.Control.extend({
     this._legends.appendChild(legendItem);
   },
 
+  /**
+   * Add message stating that there are no legends to display
+   *
+   */
   _addMessage: function () {
     var message;
 
@@ -66,14 +74,15 @@ var Legend = L.Control.extend({
   _displayLegends: function () {
     var i,
         len,
-        legend,
         legends;
+
+    legends = [];
+    legends = (this.options.legends || []).slice();
 
     // clear existing legends
     this._legends.innerHTML = '';
 
-    legends = [];
-    legends = (this.options.legends || []).slice();
+    // loop through layers on the map, check for legends
     this._map.eachLayer(function (layer) {
       if (layer.getLegend) {
         legends.push(layer.getLegend());
@@ -87,8 +96,7 @@ var Legend = L.Control.extend({
 
     // loop through all legends and add to legend control
     for (i = 0, len = legends.length; i < len; i++) {
-      legend = legends[i];
-      this._addLegend(legend);
+      this._addLegend(legends[i]);
     }
   },
 
@@ -101,7 +109,8 @@ var Legend = L.Control.extend({
   },
 
   /**
-   * Setup bindings for expanding the Legend control on hover or touch
+   * Build layout for legend control and setup bindings for
+   * expanding/collapsing the Legend control on click
    *
    */
   _initLayout: function () {
@@ -150,15 +159,26 @@ var Legend = L.Control.extend({
     }
   },
 
+  /**
+   * Called when a layer is added to the map
+   *
+   */
   _onLayerAdd: function () {
     this._displayLegends();
   },
 
+  /**
+   * Called when a layer is removed from the map
+   *
+   */
   _onLayerRemove: function () {
     this._displayLegends();
   },
 
-
+  /**
+   * Remove message stating that there are no legends to display
+   *
+   */
   _removeMessage: function () {
     var message;
 
@@ -170,7 +190,8 @@ var Legend = L.Control.extend({
   },
 
   /**
-   * onAdd Add the legend toggle and legends to the map
+   * Add the legend toggle and legends to the map, bind to add/removing
+   * layers to the map
    *
    */
   onAdd: function (map) {
@@ -192,12 +213,15 @@ var Legend = L.Control.extend({
     return this._container;
   },
 
+  /**
+   * Remove the bindings to add/removing layers to the map
+   *
+   */
   onRemove: function (map) {
     map
       .off('layeradd', this._onLayerAdd, this)
       .off('layerremove', this._onLayerRemove, this);
   }
-
 });
 
 
