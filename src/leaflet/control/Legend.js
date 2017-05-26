@@ -23,6 +23,67 @@ var Legend = L.Control.extend({
     legends: null
   },
 
+  _addLegend: function (legend) {
+    var legendItem;
+
+    // No legend to display
+    if (legend === null) {
+      return;
+    }
+
+    this._removeMessage();
+
+    legendItem = document.createElement('li');
+
+    // Add a DOM Element or DOM String
+    if (typeof legend === 'object') {
+      legendItem.appendChild(legend);
+    } else if (typeof legend === 'string') {
+      legendItem.innerHTML = legend;
+    }
+
+    this._legends.appendChild(legendItem);
+  },
+
+  /**
+   * Loops through each legend object in the legends array and displays the
+   * title, image, and/or element for the legend.
+   *
+   * @return {DocumentFragment}
+   *         A fragment containing all of the legends to be added to the
+   *         expanded Legend control.
+   */
+  _addLegends: function () {
+    var i,
+        len,
+        legend,
+        legends;
+
+    legends = this.options.legends || [];
+
+    // display message if no legends exist
+    if (legends.length === 0) {
+      this._addMessage();
+    }
+
+    for (i = 0, len = legends.length; i < len; i++) {
+      legend = legends[i];
+      this._addLegend(legend);
+    }
+  },
+
+  _addMessage: function () {
+    var message;
+
+    if (this._legends.querySelectorAll('li').length === 0) {
+      message = document.createElement('li');
+      message.className = 'no-legend';
+      message.innerHTML = 'Please select a layer.';
+
+      this._legends.appendChild(message);
+    }
+  },
+
   /**
    * Collapse the expanded Legend control
    *
@@ -40,89 +101,34 @@ var Legend = L.Control.extend({
   },
 
   /**
-   * Loops through each legend object in the legends array and displays the
-   * title, image, and/or element for the legend.
-   *
-   * @return {DocumentFragment}
-   *         A fragment containing all of the legends to be added to the
-   *         expanded Legend control.
-   */
-  _addLegends: function () {
-    var fragment,
-        i,
-        legend,
-        legendItem,
-        legends;
-
-    legends = this.options.legends || [];
-    fragment = document.createDocumentFragment();
-
-    // display message if no legends exist
-    if (legends.length === 0) {
-      this._addMessage();
-    }
-
-    for (i = 0; i < legends.length; i++) {
-      legend = legends[i];
-      this.addLegend(legend);
-    }
-
-    return fragment;
-  },
-
-  /**
-   * onAdd Add the legend toggle and legends to the map
-   *
-   */
-  onAdd: function (map) {
-    var legends;
-
-    // bind 
-    this._initLayout();
-
-    // build control
-    this._container.appendChild(this._link);
-    this._container.appendChild(this._legends);
-    this._container.appendChild(this._closeButton);
-
-    // add legends
-    this._addLegends();
-
-    map
-        .on('layeradd', this._onLayerAdd, this)
-        .on('layerremove', this._onLayerRemove, this);
-
-    return this._container;
-  },
-
-  onRemove: function (map) {
-    map
-      .off('layeradd', this._onLayerAdd, this)
-      .off('layerremove', this._onLayerRemove, this);
-  },
-
-  /**
    * Setup bindings for expanding the Legend control on hover or touch
    *
    */
   _initLayout: function () {
-    var closeButton,
+    var className,
+        closeButton,
         container,
         legends,
         link;
 
+    className = 'leaflet-control-legend';
+
     closeButton = this._closeButton =
-        L.DomUtil.create('button', 'leaflet-control-legend-close');
+        L.DomUtil.create('button', className + '-close');
     closeButton.innerHTML = 'close';
     container = this._container =
-        L.DomUtil.create('div', 'leaflet-control-legend');
+        L.DomUtil.create('div', className);
     legends = this._legends =
-        L.DomUtil.create('ul', 'leaflet-control-legend-list no-style');
+        L.DomUtil.create('ul', className + '-list no-style');
     link = this._link =
-        L.DomUtil.create('a', 'leaflet-control-legend-toggle material-icons');
+        L.DomUtil.create('a', className + '-toggle material-icons');
     link.href = '#';
     link.title = 'Legend';
     link.innerHTML = '&#xE0DA;';
+
+    // Makes this work on IE10 Touch devices by stopping it from firing
+    // a mouseout event when the touch is released
+    container.setAttribute('aria-haspopup', true);
 
     if (L.Browser.touch) {
       L.DomEvent
@@ -146,39 +152,17 @@ var Legend = L.Control.extend({
 
   _onLayerAdd: function (e) {
     if (e.layer.getLegend) {
-      this.addLegend(e.layer.getLegend());
+      this._addLegend(e.layer.getLegend());
     }
   },
 
   _onLayerRemove: function (e) {
     if (e.layer.getLegend) {
-      this.removeLegend(e.layer.getLegend());
+      this._removeLegend(e.layer.getLegend());
     }
   },
 
-  addLegend: function (legend) {
-    var legendItem;
-
-    // No legend to display
-    if (legend === null) {
-      return;
-    }
-
-    this._removeMessage();
-
-    legendItem = document.createElement('li');
-
-    // Add a DOM Element or DOM String
-    if (typeof legend === 'object') {
-      legendItem.appendChild(legend);
-    } else if (typeof legend === 'string') {
-      legendItem.innerHTML = legend;
-    }
-
-    this._legends.appendChild(legendItem);
-  },
-
-  removeLegend: function (legend) {
+  _removeLegend: function (legend) {
     var i,
         len,
         listItem,
@@ -209,18 +193,6 @@ var Legend = L.Control.extend({
     this._addMessage();
   },
 
-  _addMessage: function () {
-    var message;
-
-    if (this._legends.querySelectorAll('li').length === 0) {
-      message = document.createElement('li');
-      message.className = 'no-legend';
-      message.innerHTML = 'Please select a layer.';
-
-      this._legends.appendChild(message);
-    }
-  },
-
   _removeMessage: function () {
     var message;
 
@@ -229,6 +201,35 @@ var Legend = L.Control.extend({
     if (message) {
       this._legends.removeChild(message);
     }
+  },
+
+  /**
+   * onAdd Add the legend toggle and legends to the map
+   *
+   */
+  onAdd: function (map) {
+    // bind
+    this._initLayout();
+
+    // build control
+    this._container.appendChild(this._link);
+    this._container.appendChild(this._legends);
+    this._container.appendChild(this._closeButton);
+
+    // add legends
+    this._addLegends();
+
+    map
+        .on('layeradd', this._onLayerAdd, this)
+        .on('layerremove', this._onLayerRemove, this);
+
+    return this._container;
+  },
+
+  onRemove: function (map) {
+    map
+      .off('layeradd', this._onLayerAdd, this)
+      .off('layerremove', this._onLayerRemove, this);
   }
 
 });

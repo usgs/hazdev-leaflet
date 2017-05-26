@@ -54,16 +54,21 @@ var HazDevLayers = L.Control.Layers.extend({
         link;
 
     className = 'leaflet-control-layers';
+
     closeButton = this._closeButton =
         L.DomUtil.create('button', 'leaflet-control-legend-close');
     closeButton.innerHTML = 'close';
-    container = this._container = L.DomUtil.create('div', className);
-    form = this._form = L.DomUtil.create('form', className + '-list');
-    link = this._layersLink = L.DomUtil.create('a', className + '-toggle', container);
+    container = this._container =
+        L.DomUtil.create('div', className);
+    form = this._form =
+        L.DomUtil.create('form', className + '-list');
+    link = this._layersLink =
+        L.DomUtil.create('a', className + '-toggle', container);
     link.href = '#';
     link.title = 'Layers';
 
-    //Makes this work on IE10 Touch devices by stopping it from firing a mouseout event when the touch is released
+    // Makes this work on IE10 Touch devices by stopping it from firing
+    // a mouseout event when the touch is released
     container.setAttribute('aria-haspopup', true);
 
     if (L.Browser.touch) {
@@ -83,7 +88,8 @@ var HazDevLayers = L.Control.Layers.extend({
           .on(link, 'click', this._expand, this);
       L.DomEvent
           .on(closeButton, 'click', this._collapse, this);
-      //Work around for Firefox android issue https://github.com/Leaflet/Leaflet/issues/2033
+      // Work around for Firefox android issue
+      // https://github.com/Leaflet/Leaflet/issues/2033
       L.DomEvent.on(form, 'click', function () {
         setTimeout(L.bind(this._onInputClick, this), 0);
       }, this);
