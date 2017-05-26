@@ -34,14 +34,6 @@ var initialize = function () {
   layersControl = HazDevLayers();
   map.addControl(layersControl);
 
-  // Add legend control
-  legend = Legend({
-    legends: [
-      '<img src="https://earthquake.usgs.gov/hazards/qfaults/map/images/qfault-legend.png" title="Legend that cannot be hidden" />'
-    ]
-  });
-  legend.addTo(map);
-
   // Add tectonic plates layer
   plates = TectonicPlates({
     legend: 'tectonic plates'
@@ -71,6 +63,13 @@ var initialize = function () {
   });
   layersControl.addOverlay(usHazards, 'US Hazards');
 
+  // Add legend control
+  legend = Legend({
+    legends: [
+      '<img src="https://earthquake.usgs.gov/hazards/qfaults/map/images/qfault-legend.png" title="Legend that cannot be hidden" />'
+    ]
+  });
+  legend.addTo(map);
 
 };
 

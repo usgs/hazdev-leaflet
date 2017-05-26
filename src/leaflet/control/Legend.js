@@ -5,16 +5,8 @@
  * Adds a Legend control to the map with a hover/clickable toggle
  *
  * This control accepts a position, and an array of "legends" to display
- * in the expandable control. Each legend is represented as an object, with
- * the following attributes:
- *
- *    "title" - {String} styled as a header/title for the legend
- *    "image" - {String} a relative path to an image that will be displayed
- *    "el"    - {String} or {Object} a DOM string or DOM object that will be
- *              appened to the Legend control.
- *
- * You must use at least one of the legend attributes, but there is no limit
- * to how many you use. You can combine all three.
+ * in the expandable control. Each legend is represented as a html
+ * markup (string) or as an DOM object.
  *
  */
 var Legend = L.Control.extend({
@@ -45,33 +37,6 @@ var Legend = L.Control.extend({
     this._legends.appendChild(legendItem);
   },
 
-  /**
-   * Loops through each legend object in the legends array and displays the
-   * title, image, and/or element for the legend.
-   *
-   * @return {DocumentFragment}
-   *         A fragment containing all of the legends to be added to the
-   *         expanded Legend control.
-   */
-  _addLegends: function () {
-    var i,
-        len,
-        legend,
-        legends;
-
-    legends = this.options.legends || [];
-
-    // display message if no legends exist
-    if (legends.length === 0) {
-      this._addMessage();
-    }
-
-    for (i = 0, len = legends.length; i < len; i++) {
-      legend = legends[i];
-      this._addLegend(legend);
-    }
-  },
-
   _addMessage: function () {
     var message;
 
@@ -89,7 +54,42 @@ var Legend = L.Control.extend({
    *
    */
   _collapse: function () {
-    this._container.className = this._container.className.replace(' leaflet-control-legend-expanded', '');
+    this._container.className = this._container.className
+        .replace(' leaflet-control-legend-expanded', '');
+  },
+
+  /**
+   * Loops through each legend object in the legends array and displays
+   * the legends
+   *
+   */
+  _displayLegends: function () {
+    var i,
+        len,
+        legend,
+        legends;
+
+    // clear existing legends
+    this._legends.innerHTML = '';
+
+    legends = [];
+    legends = (this.options.legends || []).slice();
+    this._map.eachLayer(function (layer) {
+      if (layer.getLegend) {
+        legends.push(layer.getLegend());
+      }
+    }, this);
+
+    // display message if no legends exist
+    if (legends.length === 0) {
+      this._addMessage();
+    }
+
+    // loop through all legends and add to legend control
+    for (i = 0, len = legends.length; i < len; i++) {
+      legend = legends[i];
+      this._addLegend(legend);
+    }
   },
 
   /**
@@ -150,48 +150,14 @@ var Legend = L.Control.extend({
     }
   },
 
-  _onLayerAdd: function (e) {
-    if (e.layer.getLegend) {
-      this._addLegend(e.layer.getLegend());
-    }
+  _onLayerAdd: function () {
+    this._displayLegends();
   },
 
-  _onLayerRemove: function (e) {
-    if (e.layer.getLegend) {
-      this._removeLegend(e.layer.getLegend());
-    }
+  _onLayerRemove: function () {
+    this._displayLegends();
   },
 
-  _removeLegend: function (legend) {
-    var i,
-        len,
-        listItem,
-        listItems;
-
-    // no legend to display
-    if (legend === null) {
-      return;
-    }
-
-    listItems = [];
-    listItems = this._legends.querySelectorAll('li');
-
-    // if legend is a DOM element
-    if (typeof legend === 'object') {
-      legend = legend.innerHTML;
-    }
-
-    for (i = 0, len = listItems.length; i < len; i++) {
-      listItem = listItems[i];
-
-      if (listItem.innerHTML === legend) {
-        this._legends.removeChild(listItem);
-        break;
-      }
-    }
-
-    this._addMessage();
-  },
 
   _removeMessage: function () {
     var message;
@@ -217,7 +183,7 @@ var Legend = L.Control.extend({
     this._container.appendChild(this._closeButton);
 
     // add legends
-    this._addLegends();
+    this._displayLegends();
 
     map
         .on('layeradd', this._onLayerAdd, this)
