@@ -5,17 +5,12 @@
 .leaflet-control-legend .leaflet-control-legend-toggle {
   color: #666;
   font-size: 20px;
-  height: 30px;
-  line-height: 30px;
   text-align: center;
   text-decoration: none;
-  width: 30px;
 }
 
 .leaflet-control-legend-expanded {
   padding: 6px;
-  color: #333;
-  background: #fff;
 }
 
 .leaflet-control-legend-expanded .leaflet-control-legend-toggle,
@@ -42,10 +37,9 @@
 }
 .leaflet-control-layers-expanded .leaflet-control-legend-close,
 .leaflet-control-legend-expanded .leaflet-control-legend-close {
-  display: flex;
+  display: block;
   flex-shrink: 0;
   font-size: 12px;
-  justify-content: center;
   order: 1;
 
   &:hover {
@@ -55,7 +49,6 @@
   & .material-icons {
     font-size: 16px;
   }
-
 }
 
 .leaflet-top.leaflet-right {
