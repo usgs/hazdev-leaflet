@@ -35,9 +35,7 @@ var initialize = function () {
   map.addControl(layersControl);
 
   // Add tectonic plates layer
-  plates = TectonicPlates({
-    legend: 'tectonic plates'
-  });
+  plates = TectonicPlates();
   layersControl.addOverlay(plates, 'Tectonic Plates');
 
   // Add historic seismicity layer

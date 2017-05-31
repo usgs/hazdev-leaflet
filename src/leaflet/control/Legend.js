@@ -84,7 +84,7 @@ var Legend = L.Control.extend({
 
     // loop through layers on the map, check for legends
     this._map.eachLayer(function (layer) {
-      if (layer.getLegend) {
+      if (layer.getLegend && layer.getLegend() !== null) {
         legends.push(layer.getLegend());
       }
     }, this);

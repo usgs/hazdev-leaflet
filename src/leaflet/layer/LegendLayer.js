@@ -5,7 +5,7 @@ var Util = require('util/Util');
 
 
 var DEFAULTS = {
-  legend: '<p>No legend available.</p>'
+  legend: null
 };
 
 
