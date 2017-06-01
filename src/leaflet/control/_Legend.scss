@@ -1,0 +1,72 @@
+.leaflet-control-legend {
+  padding: 0;
+}
+
+.leaflet-control-legend .leaflet-control-legend-toggle {
+  color: #666;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.leaflet-control-legend-expanded {
+  padding: 6px;
+}
+
+.leaflet-control-legend-expanded .leaflet-control-legend-toggle,
+.leaflet-control-legend-list,
+.leaflet-control-legend-close  {
+  display: none;
+}
+
+.leaflet-control-legend-expanded .leaflet-control-legend-list {
+  display: block;
+  list-style: none;
+  max-width: 100%;
+  position: relative;
+}
+
+.leaflet-control-legend-list > li {
+  margin: 0.5em 0;
+
+  > img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+}
+.leaflet-control-layers-expanded .leaflet-control-legend-close,
+.leaflet-control-legend-expanded .leaflet-control-legend-close {
+  display: block;
+  flex-shrink: 0;
+  font-size: 12px;
+  order: 1;
+
+  &:hover {
+    color: #333;
+  }
+
+  & .material-icons {
+    font-size: 16px;
+  }
+}
+
+.leaflet-top.leaflet-right {
+  height: 100%;
+}
+
+.leaflet-control-legend.leaflet-control-legend-expanded {
+  display: flex;
+  flex-direction: column;
+  max-height: 80%;
+}
+
+.leaflet-control-legend-expanded .leaflet-control-legend-list {
+  overflow: scroll;
+  margin: 0.5em 0;
+  order: 2;
+}
+
+.leaflet-control-layers-expanded + .leaflet-control-legend-expanded {
+  max-height: 50%;
+}

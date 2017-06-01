@@ -9,6 +9,22 @@
   padding: 4px 6px;
 }
 
+.leaflet-touch .leaflet-control {
+  box-shadow: 0 1px 1px #333;
+
+  > a {
+    height: $leaflet-control-size-mobile;
+    line-height: $leaflet-control-size-mobile;
+    width: $leaflet-control-size-mobile;
+  }
+}
+
+.leaflet-control > a {
+  height: $leaflet-control-size;
+  line-height: $leaflet-control-size;
+  width: $leaflet-control-size;
+}
+
 
 /* grouped controls */
 .leaflet-bar {

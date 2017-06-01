@@ -4,13 +4,14 @@
 var ArcIdentify = require('leaflet/ArcIdentify'),
     Util = require('util/Util');
 
+require('leaflet/layer/LegendLayer');
 
 var DEFAULTS = {
   clickable: false
 };
 
 
-var ArcTile = L.TileLayer.extend({
+var ArcTile = L.LegendLayer.extend({
 
   initialize: function (options) {
     options = Util.extend({}, DEFAULTS, options);
@@ -23,7 +24,7 @@ var ArcTile = L.TileLayer.extend({
       url: this._url + '/MapServer/identify'
     });
 
-		L.TileLayer.prototype.initialize.call(this,
+    L.LegendLayer.prototype.initialize.call(this,
         this._url + '/MapServer/tile/{z}/{y}/{x}', options);
   },
 

@@ -13,6 +13,7 @@ var EXPORTS = [
 
     'leaflet/control/Fullscreen',
     'leaflet/control/HazDevLayers',
+    'leaflet/control/Legend',
     'leaflet/control/MousePosition',
     'leaflet/control/ZoomToControl',
 
@@ -24,6 +25,7 @@ var EXPORTS = [
     'leaflet/layer/HazardFault2008',
     'leaflet/layer/HazardFault2014',
     'leaflet/layer/HistoricSeismicity',
+    'leaflet/layer/LegendLayer',
     'leaflet/layer/MouseOverLayer',
     'leaflet/layer/Satellite',
     'leaflet/layer/Street',

@@ -2,13 +2,15 @@
 'use strict';
 
 
+require('leaflet/layer/LegendLayer');
+
 var _TILE_URL = 'https://earthquake.usgs.gov/basemap/tiles/ushaz';
 
 
 var UsHazard = function (options) {
   options = options || {};
 
-  return L.tileLayer(_TILE_URL + '/{z}/{x}/{y}.png', options);
+  return L.legendLayer(_TILE_URL + '/{z}/{x}/{y}.png', options);
 };
 
 

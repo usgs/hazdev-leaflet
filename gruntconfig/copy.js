@@ -23,6 +23,13 @@ var copy = {
       return dest + '/' + newName;
     },
     src: '**/*'
+  },
+
+  images: {
+    expand: true,
+    cwd: config.src + '/leaflet/legend',
+    dest: config.build + '/' + config.src + '/legend/',
+    src: ['**/*.jpg']
   }
 };
 

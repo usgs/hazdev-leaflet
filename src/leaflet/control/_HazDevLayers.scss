@@ -2,18 +2,24 @@
 
 /* style overrides for the built in leaflet Layers control. */
 .leaflet-control-layers {
+  display: flex;
+  flex-direction: column;
   left: 0;
   padding: 0;
   position: relative;
+
+  &.leaflet-control-layers-expanded {
+    padding: 6px;
+  }
 }
 
 .leaflet-control-layers-toggle {
-  height: $leaflet-control-size;
-  width: $leaflet-control-size;
+  background-size: 70%;
 }
 
-.leaflet-control-layers-expanded {
-  padding: 4px 6px;
+.leaflet-control-layers-list {
+  order: 2;
+  overflow: scroll;
 }
 
 .leaflet-control-layers-selector + label {
@@ -24,7 +30,6 @@
     top: 2px;
   }
 }
-
 .leaflet-control-layers-selector[type='radio'] + label:before {
   width: 1em;
   height: 1em;
