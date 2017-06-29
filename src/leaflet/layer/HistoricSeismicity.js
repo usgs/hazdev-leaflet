@@ -21,7 +21,9 @@ var _IMAGE = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQA
 var HistoricSeismicity = function (options) {
   options = Util.extend({
     tileUrl: _HISTORIC_SEISMICITY_URL,
-    legend: '<img src="' + _IMAGE + '" title="Historic Seismicity Legend" />'
+    legends: [
+      '<img src="' + _IMAGE + '" title="Historic Seismicity Legend" />'
+    ]
   }, options);
 
   return L.legendLayer(options.tileUrl, options);

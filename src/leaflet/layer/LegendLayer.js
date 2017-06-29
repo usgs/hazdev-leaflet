@@ -14,13 +14,13 @@ var LegendLayer = L.TileLayer.extend({
   initialize: function (url, options) {
     options = Util.extend({}, DEFAULTS, options);
 
-    this._legend = options.legend || null;
+    this._legends = options.legends || null;
 
     L.TileLayer.prototype.initialize.call(this, url, options);
   },
 
-  getLegend: function () {
-    return this._legend;
+  getLegends: function () {
+    return this._legends;
   }
 });
 
