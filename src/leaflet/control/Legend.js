@@ -123,7 +123,7 @@ var Legend = L.Control.extend({
     // loop through all legends and remove duplicates
     for (i = 0, len = legends.length; i < len; i++) {
       legend = legends[i];
-      if (!sanitizedList.includes(legend)) {
+      if (sanitizedList.indexOf(legend) === -1) {
         sanitizedList.push(legend);
       }
     }
