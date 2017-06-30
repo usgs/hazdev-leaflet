@@ -84,8 +84,8 @@ var Legend = L.Control.extend({
 
     // loop through layers on the map, check for legends
     this._map.eachLayer(function (layer) {
-      if (layer.getLegend && layer.getLegend() !== null) {
-        legends.push(layer.getLegend());
+      if (layer.getLegends && layer.getLegends() !== null) {
+        Array.prototype.push.apply(legends, layer.getLegends());
       }
     }, this);
 
@@ -94,10 +94,41 @@ var Legend = L.Control.extend({
       this._addMessage();
     }
 
+    legends = this._removeDuplicatesFromLegendList(legends);
+
     // loop through all legends and add to legend control
     for (i = 0, len = legends.length; i < len; i++) {
       this._addLegend(legends[i]);
     }
+  },
+
+  /**
+   * Removes duplicate legends from the legend control
+   *
+   * @param legends {Array}
+   *        Complete list of legends to append to the legend control
+   *
+   * @return {Array}
+   *        A sanitized list of legends with zero duplicates
+   *
+   */
+  _removeDuplicatesFromLegendList: function (legends) {
+    var i,
+        legend,
+        len,
+        sanitizedList;
+
+    sanitizedList = [];
+
+    // loop through all legends and remove duplicates
+    for (i = 0, len = legends.length; i < len; i++) {
+      legend = legends[i];
+      if (!sanitizedList.includes(legend)) {
+        sanitizedList.push(legend);
+      }
+    }
+
+    return sanitizedList;
   },
 
   /**

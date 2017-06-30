@@ -45,19 +45,25 @@ var initialize = function () {
 
   // Add hazard faults layer
   hazFaults = HazardFault2014({
-    legend: 'hazard faults 2014'
+    legends: [
+      'hazard faults 2014'
+    ]
   });
   layersControl.addOverlay(hazFaults, 'Hazard Faults 2014');
 
   // Add us faults layer
   usFaults = UsFault({
-    legend: 'us faults'
+    legends: [
+      'us double test'
+    ]
   });
   layersControl.addOverlay(usFaults, 'US Faults');
 
   // Add us hazards layer
   usHazards = UsHazard({
-    legend: 'us hazards'
+    legends: [
+      'us double test'
+    ]
   });
   layersControl.addOverlay(usHazards, 'US Hazards');
 
