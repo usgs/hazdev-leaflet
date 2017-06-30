@@ -10,6 +10,7 @@
 }
 
 .leaflet-control-legend-expanded {
+  max-height: 80%;
   padding: 6px;
 }
 
@@ -62,11 +63,11 @@
 }
 
 .leaflet-control-legend-expanded .leaflet-control-legend-list {
-  overflow: scroll;
+  overflow-y: scroll;
   margin: 0.5em 0;
   order: 2;
 }
 
 .leaflet-control-layers-expanded + .leaflet-control-legend-expanded {
-  max-height: 50%;
+  max-height: 45%;
 }
