@@ -85,6 +85,7 @@ var HazDevLayers = L.Control.Layers.extend({
     }
 
     // expand and collapse control
+    L.DomEvent.on(container, 'mousewheel', L.DomEvent.stopPropagation);
     L.DomEvent
         .on(link, 'click', L.DomEvent.stop)
         .on(link, 'click', this._expand, this);
