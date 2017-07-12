@@ -22,9 +22,11 @@
 
 .leaflet-control-legend-expanded .leaflet-control-legend-list {
   display: block;
-  list-style: none;
   max-width: 100%;
   position: relative;
+  overflow-y: scroll;
+  margin: 0.5em 0;
+  order: 2;
 }
 
 .leaflet-control-legend-list > li {
@@ -59,15 +61,18 @@
 .leaflet-control-legend.leaflet-control-legend-expanded {
   display: flex;
   flex-direction: column;
-  max-height: 80%;
-}
-
-.leaflet-control-legend-expanded .leaflet-control-legend-list {
-  overflow-y: scroll;
-  margin: 0.5em 0;
-  order: 2;
 }
 
 .leaflet-control-layers-expanded + .leaflet-control-legend-expanded {
   max-height: 45%;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .leaflet-control-legend-expanded {
+    height: 80%;
+  }
+
+  .leaflet-control-layers-expanded + .leaflet-control-legend-expanded {
+    height: 45%;
+  }
 }

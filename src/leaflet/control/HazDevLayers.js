@@ -71,20 +71,17 @@ var HazDevLayers = L.Control.Layers.extend({
     // a mouseout event when the touch is released
     container.setAttribute('aria-haspopup', true);
 
-    if (L.Browser.touch) {
-      L.DomEvent.disableClickPropagation(container);
-    } else {
-      L.DomEvent
+    L.DomEvent
         .disableClickPropagation(container)
         .disableScrollPropagation(container);
-      // Work around for Firefox android issue
-      // https://github.com/Leaflet/Leaflet/issues/2033
-      L.DomEvent.on(form, 'click', function () {
-        setTimeout(L.bind(this._onInputClick, this), 0);
-      }, this);
-    }
+    // Work around for Firefox android issue
+    // https://github.com/Leaflet/Leaflet/issues/2033
+    L.DomEvent.on(form, 'click', function () {
+      setTimeout(L.bind(this._onInputClick, this), 0);
+    }, this);
 
     // expand and collapse control
+    L.DomEvent.on(container, 'mousewheel', L.DomEvent.stopPropagation);
     L.DomEvent
         .on(link, 'click', L.DomEvent.stop)
         .on(link, 'click', this._expand, this);
