@@ -61,7 +61,7 @@ var HazDevLayers = L.Control.Layers.extend({
     container = this._container =
         L.DomUtil.create('div', className);
     form = this._form =
-        L.DomUtil.create('form', className + '-list');
+        L.DomUtil.create('form', className + '-list vertical-scrolling');
     link = this._layersLink =
         L.DomUtil.create('a', className + '-toggle', container);
     link.href = '#';
