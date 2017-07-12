@@ -159,7 +159,7 @@ var Legend = L.Control.extend({
     container = this._container =
         L.DomUtil.create('div', className);
     legends = this._legends =
-        L.DomUtil.create('ul', className + '-list no-style');
+        L.DomUtil.create('ul', className + '-list no-style vertical-scrolling');
     link = this._link =
         L.DomUtil.create('a', className + '-toggle material-icons');
     link.href = '#';
