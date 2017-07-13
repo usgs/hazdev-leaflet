@@ -233,8 +233,8 @@ var Legend = L.Control.extend({
     this._displayLegends();
 
     map
-        .on('layeradd', this._onLayerAdd, this)
-        .on('layerremove', this._onLayerRemove, this);
+        .on('overlayadd', this._onLayerAdd, this)
+        .on('overlayremove', this._onLayerRemove, this);
 
     return this._container;
   },
@@ -245,8 +245,8 @@ var Legend = L.Control.extend({
    */
   onRemove: function (map) {
     map
-      .off('layeradd', this._onLayerAdd, this)
-      .off('layerremove', this._onLayerRemove, this);
+      .off('overlayadd', this._onLayerAdd, this)
+      .off('overlayremove', this._onLayerRemove, this);
   }
 });
 

@@ -67,6 +67,11 @@
   max-height: 45%;
 }
 
+.legend-historic-seismicity {
+  width: 210px;
+  height: auto;
+}
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .leaflet-control-legend-expanded {
     height: 80%;
@@ -75,9 +80,4 @@
   .leaflet-control-layers-expanded + .leaflet-control-legend-expanded {
     height: 45%;
   }
-}
-
-.legend-historic-seismicity {
-  width: 227px;
-  height: auto;
 }
