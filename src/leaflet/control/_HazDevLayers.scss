@@ -35,3 +35,10 @@
   width: 1em;
   height: 1em;
 }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+  .leaflet-control-layers.leaflet-control-layers-expanded {
+    height: 45%;
+  }
+}
