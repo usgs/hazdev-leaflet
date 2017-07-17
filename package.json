@@ -1,6 +1,6 @@
 {
   "name": "hazdev-leaflet",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "homepage": "https://earthquake.usgs.gov/",
   "description": "General utilities for working with Leaflet.",
   "repository": {
