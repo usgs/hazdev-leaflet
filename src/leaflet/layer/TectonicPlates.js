@@ -8,9 +8,12 @@ var _PLATES_URL = 'https://earthquake.usgs.gov/basemap/tiles/plates';
 
 
 var TectonicPlates = function (options) {
+  var url;
   options = options || {};
 
-  return L.legendLayer(_PLATES_URL + '/{z}/{x}/{y}.png', options);
+  url = options.platesUrl || (_PLATES_URL + '/{z}/{x}/{y}.png');
+
+  return L.legendLayer(url, options);
 };
 
 
