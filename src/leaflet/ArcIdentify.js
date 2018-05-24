@@ -1,8 +1,8 @@
 /* global L */
 'use strict';
 
-var Util = require('util/Util'),
-    Xhr = require('util/Xhr');
+var Util = require('hazdev-webutils/src/util/Util'),
+    Xhr = require('hazdev-webutils/src/util/Xhr');
 
 
 var DEFAULTS = {

@@ -2,7 +2,7 @@
 'use strict';
 
 
-var Util = require('util/Util');
+var Util = require('hazdev-webutils/src/util/Util');
 
 var _CLASS_NAME = 'zoomto-control';
 

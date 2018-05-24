@@ -3,10 +3,10 @@
 
 
 var MouseOverLayer = require('leaflet/layer/MouseOverLayer'),
-    Util = require('util/Util');
+    Util = require('hazdev-webutils/src/util/Util');
 
 
-var _FAULTS_URL = 'https://earthquake.usgs.gov/basemap/tiles/faults';
+var _FAULTS_URL = 'https://dev01-earthquake.cr.usgs.gov/basemap/tiles/faults';
 
 
 var UsFault = function (options) {
