@@ -2,7 +2,7 @@
 'use strict';
 
 var ArcIdentify = require('leaflet/ArcIdentify'),
-    Util = require('util/Util');
+    Util = require('hazdev-webutils/src/util/Util');
 
 require('leaflet/layer/LegendLayer');
 

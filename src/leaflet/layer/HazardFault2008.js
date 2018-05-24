@@ -3,7 +3,7 @@
 
 
 var HazardFault = require('leaflet/layer/HazardFault'),
-    Util = require('util/Util');
+    Util = require('hazdev-webutils/src/util/Util');
 
 
 /**

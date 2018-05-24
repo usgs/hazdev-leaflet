@@ -48,7 +48,7 @@ L.UtfGrid = L.Class.extend({
     subdomains: 'abc',
 
     minZoom: 0,
-    maxZoom: 18,
+    maxZoom: 12,
     tileSize: 256,
 
     resolution: 4,

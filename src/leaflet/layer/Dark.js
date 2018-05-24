@@ -2,7 +2,7 @@
 
 
 var TileProvider = require('leaflet/layer/TileProvider'),
-    Util = require('util/Util');
+    Util = require('hazdev-webutils/src/util/Util');
 
 
 var _DARK,

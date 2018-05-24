@@ -3,7 +3,7 @@
 
 
 var UtfGrid = require('leaflet/UtfGrid'),
-    Util = require('util/Util');
+    Util = require('hazdev-webutils/src/util/Util');
 
 
 var CLASSES = 'leaflet-mouseover-tooltip';
