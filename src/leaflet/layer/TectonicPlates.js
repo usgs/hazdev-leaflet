@@ -11,7 +11,7 @@ var TectonicPlates = function (options) {
   var url;
   options = options || {};
 
-  url = options.platesUrl || (_PLATES_URL + '/{z}/{x}/{y}.png');
+  url = options.tileUrl || (_PLATES_URL + '/{z}/{x}/{y}.png');
 
   return L.legendLayer(url, options);
 };
